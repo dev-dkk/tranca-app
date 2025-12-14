@@ -1,0 +1,62 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model appointments {
+  id         String              @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  user_id    String              @db.Uuid
+  service_id String              @db.Uuid
+  start_time DateTime            @db.Timestamptz(6)
+  end_time   DateTime            @db.Timestamptz(6)
+  status     appointment_status? @default(PENDING)
+  notes      String?
+  created_at DateTime?           @default(now()) @db.Timestamptz(6)
+  services   services            @relation(fields: [service_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  users      users               @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model schedule_blocks {
+  id         String   @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  start_time DateTime @db.Timestamptz(6)
+  end_time   DateTime @db.Timestamptz(6)
+  reason     String?  @db.VarChar(255)
+}
+
+model services {
+  id               String         @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  name             String         @db.VarChar(255)
+  description      String?
+  price            Decimal        @db.Decimal(10, 2)
+  duration_minutes Int
+  image_url        String?        @db.VarChar(255)
+  active           Boolean?       @default(true)
+  appointments     appointments[]
+}
+
+model users {
+  id            String         @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  name          String         @db.VarChar(255)
+  email         String         @unique @db.VarChar(255)
+  password_hash String         @db.VarChar(255)
+  phone         String?        @db.VarChar(20)
+  role          user_role?     @default(CLIENT)
+  created_at    DateTime?      @default(now()) @db.Timestamptz(6)
+  appointments  appointments[]
+}
+
+enum appointment_status {
+  PENDING
+  CONFIRMED
+  CANCELED
+  COMPLETED
+}
+
+enum user_role {
+  CLIENT
+  ADMIN
+}
