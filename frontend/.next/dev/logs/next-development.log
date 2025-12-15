@@ -1,3 +1,244 @@
-[00:00:01.794] Server  LOG      ✓ Ready in 1160ms
-[00:00:16.576] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:01:43.281] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:01.596] Server  LOG      ✓ Ready in 1162ms
+[00:00:04.651] Server  LOG      ○ Compiling /register ...
+[00:00:05.402] Server  WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[00:00:05.611] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:05.671] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:06.806] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[00:00:06.806] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[00:00:08.811] Browser ERROR   Erro ao buscar serviços: {}
+[00:15:21.788] Server  LOG      ✓ Compiled in 44ms
+[00:16:54.561] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:16:56.492] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:27:29.860] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:30:59.579] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:35:27.044] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[00:35:27.044] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[00:39:39.039] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:39:50.137] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:39:52.434] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:41:31.988] Server  LOG      ✓ Compiled in 51ms
+[00:42:33.026] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:43:40.597] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:47:42.017] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:01:53.277] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:43:08.108] Server  LOG      ✓ Compiled in 64ms
+[01:44:08.835] Server  LOG      ✓ Compiled in 56ms
+[01:44:35.128] Server  LOG      ✓ Compiled in 50ms
+[01:45:23.495] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:45:27.746] Server  ERROR    ⨯ ./frontend/app/book/page.tsx:8:1
+Module not found: Can't resolve '../Calendar.css'
+   6 | import { format, addHours, isSameDay, parseISO, setHours, setMinutes } from 'date-fns';
+   7 | import { ptBR } from 'date-fns/locale';
+>  8 | import '../Calendar.css'; // Importa nosso CSS bonito
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | function BookingContent() {
+  11 |   const router = useRouter();
+
+
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/book/page.tsx [Client Component Browser]
+    ./frontend/app/book/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/book/page.tsx [Client Component SSR]
+    ./frontend/app/book/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:45:27.863] Browser ERROR   ./frontend/app/book/page.tsx:8:1
+Module not found: Can't resolve '../Calendar.css'
+   6 | import { format, addHours, isSameDay, parseISO, setHours, setMinutes } from 'date-fns';
+   7 | import { ptBR } from 'date-fns/locale';
+>  8 | import '../Calendar.css'; // Importa nosso CSS bonito
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | function BookingContent() {
+  11 |   const router = useRouter();
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/book/page.tsx [Client Component Browser]
+    ./frontend/app/book/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/book/page.tsx [Client Component SSR]
+    ./frontend/app/book/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[01:45:28.724] Browser ERROR   ./frontend/app/book/page.tsx:8:1
+Module not found: Can't resolve '../Calendar.css'
+   6 | import { format, addHours, isSameDay, parseISO, setHours, setMinutes } from 'date-fns';
+   7 | import { ptBR } from 'date-fns/locale';
+>  8 | import '../Calendar.css'; // Importa nosso CSS bonito
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | function BookingContent() {
+  11 |   const router = useRouter();
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/book/page.tsx [Client Component Browser]
+    ./frontend/app/book/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/book/page.tsx [Client Component SSR]
+    ./frontend/app/book/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[01:45:28.833] Browser ERROR   ./frontend/app/book/page.tsx:8:1
+Module not found: Can't resolve '../Calendar.css'
+   6 | import { format, addHours, isSameDay, parseISO, setHours, setMinutes } from 'date-fns';
+   7 | import { ptBR } from 'date-fns/locale';
+>  8 | import '../Calendar.css'; // Importa nosso CSS bonito
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | function BookingContent() {
+  11 |   const router = useRouter();
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/book/page.tsx [Client Component Browser]
+    ./frontend/app/book/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/book/page.tsx [Client Component SSR]
+    ./frontend/app/book/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[01:45:29.294] Server  ERROR    ⨯ ./frontend/app/book/page.tsx:8:1
+Module not found: Can't resolve '../Calendar.css'
+   6 | import { format, addHours, isSameDay, parseISO, setHours, setMinutes } from 'date-fns';
+   7 | import { ptBR } from 'date-fns/locale';
+>  8 | import '../Calendar.css'; // Importa nosso CSS bonito
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | function BookingContent() {
+  11 |   const router = useRouter();
+
+
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/book/page.tsx [Client Component Browser]
+    ./frontend/app/book/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/book/page.tsx [Client Component SSR]
+    ./frontend/app/book/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:45:29.475] Browser ERROR   uncaughtError: Error: ./frontend/app/book/page.tsx:8:1
+Module not found: Can't resolve '../Calendar.css'
+   6 | import { format, addHours, isSameDay, parseISO, setHours, setMinutes } from 'date-fns';
+   7 | import { ptBR } from 'date-fns/locale';
+>  8 | import '../Calendar.css'; // Importa nosso CSS bonito
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | function BookingContent() {
+  11 |   const router = useRouter();
+
+
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/book/page.tsx [Client Component Browser]
+    ./frontend/app/book/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/book/page.tsx [Client Component SSR]
+    ./frontend/app/book/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:45:29.680] Browser ERROR   ./frontend/app/book/page.tsx:8:1
+Module not found: Can't resolve '../Calendar.css'
+   6 | import { format, addHours, isSameDay, parseISO, setHours, setMinutes } from 'date-fns';
+   7 | import { ptBR } from 'date-fns/locale';
+>  8 | import '../Calendar.css'; // Importa nosso CSS bonito
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | function BookingContent() {
+  11 |   const router = useRouter();
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/book/page.tsx [Client Component Browser]
+    ./frontend/app/book/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/book/page.tsx [Client Component SSR]
+    ./frontend/app/book/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[01:45:29.680] Browser ERROR   ./frontend/app/book/page.tsx:8:1
+Module not found: Can't resolve '../Calendar.css'
+   6 | import { format, addHours, isSameDay, parseISO, setHours, setMinutes } from 'date-fns';
+   7 | import { ptBR } from 'date-fns/locale';
+>  8 | import '../Calendar.css'; // Importa nosso CSS bonito
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | function BookingContent() {
+  11 |   const router = useRouter();
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/book/page.tsx [Client Component Browser]
+    ./frontend/app/book/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/book/page.tsx [Client Component SSR]
+    ./frontend/app/book/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[01:46:12.952] Server  LOG      ✓ Compiled in 68ms
+[01:46:13.544] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:46:13.813] Browser ERROR   {}
+[01:50:56.985] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:50:57.383] Browser ERROR   {}
+[01:51:05.661] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:51:10.782] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:51:29.041] Browser ERROR   {}
+[01:51:29.041] Browser ERROR   {}
+[01:54:05.511] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:54:05.881] Browser ERROR   {}
+[01:54:16.211] Browser ERROR   {}
+[01:54:16.211] Browser ERROR   {}
+[01:54:25.031] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:54:25.232] Browser ERROR   {}
+[01:57:10.098] Server  LOG      ✓ Compiled in 55ms
+[01:57:23.836] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:57:24.216] Browser ERROR   Erro ao buscar horários (Backend retornou erro): {"error":"Erro ao buscar agenda"}
+[02:01:53.238] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:01:53.556] Browser ERROR   Erro ao buscar horários (Backend retornou erro): {"error":"Erro ao buscar agenda"}
+[02:04:08.922] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:04:09.241] Browser ERROR   Erro ao buscar horários (Backend retornou erro): {"error":"Erro ao buscar agenda"}
+[02:06:07.402] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:06:07.832] Browser ERROR   Erro ao buscar horários (Backend retornou erro): {"error":"Erro ao buscar agenda"}
+[02:06:21.720] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:06:40.403] Browser ERROR   Erro ao buscar horários (Backend retornou erro): {"error":"Erro ao buscar agenda"}
+[02:06:40.404] Browser ERROR   Erro ao buscar horários (Backend retornou erro): {"error":"Erro ao buscar agenda"}
+[02:11:03.888] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:13:19.261] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:15:13.016] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold

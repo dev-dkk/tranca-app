@@ -1,0 +1,64 @@
+/* [project]/frontend/app/calendar.css [app-client] (css) */
+.react-calendar {
+  background: #fff;
+  border: 1px solid #e8d5cc;
+  border-radius: 12px;
+  width: 100%;
+  padding: 16px;
+  font-family: inherit;
+  box-shadow: 0 4px 6px -1px #0000001a;
+}
+
+.react-calendar__navigation button {
+  color: #a35841;
+  background: none;
+  min-width: 44px;
+  margin-top: 8px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.react-calendar__navigation button:enabled:hover, .react-calendar__navigation button:enabled:focus {
+  background-color: #f9f4f2;
+  border-radius: 8px;
+}
+
+.react-calendar__month-view__weekdays {
+  text-align: center;
+  text-transform: uppercase;
+  color: #c48f76;
+  margin-bottom: 10px;
+  font-size: .75em;
+  font-weight: bold;
+}
+
+.react-calendar__tile {
+  text-align: center;
+  color: #5e3a33;
+  background: none;
+  border-radius: 8px;
+  max-width: 100%;
+  padding: 10px 6.6667px;
+  font-size: 14px;
+  line-height: 16px;
+  transition: all .2s;
+}
+
+.react-calendar__tile:enabled:hover, .react-calendar__tile:enabled:focus {
+  color: #a35841;
+  background-color: #f2e8e5;
+}
+
+.react-calendar__tile--now {
+  color: #d97706;
+  background: #fff8dc;
+  font-weight: bold;
+}
+
+.react-calendar__tile--active {
+  font-weight: bold;
+  color: #fff !important;
+  background: #a35841 !important;
+}
+
+/*# sourceMappingURL=frontend_app_calendar_378aec81.css.map*/

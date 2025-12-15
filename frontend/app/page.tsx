@@ -1,59 +1,225 @@
-import Link from "next/link";
+'use client';
 
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
+
+// Interface do Serviço
+interface Service {
+  id: string;
+  name: string;
+  price: number;
+  duration_minutes: number;
+  description: string;
+  image_url?: string; 
+}
+// Interface do Usuário (agora com role)
+interface User {
+  name: string;
+  email: string;
+  role: string;
+}
 export default function Home() {
+  const router = useRouter();
+  const [services, setServices] = useState<Service[]>([]);
+  const [user, setUser] = useState<User | null>(null);
+// Estado para controlar o menu dropdown
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  // Efeito Único: Carrega Serviços E Verifica Login
+  useEffect(() => {
+    // 1. Busca os serviços do Backend
+    async function fetchServices() {
+      try {
+        const res = await fetch('http://localhost:3001/services');
+        const data = await res.json();
+        setServices(data);
+      } catch (error) {
+        console.error("Erro ao carregar serviços", error);
+      }
+    }
+    fetchServices();
+
+    // 2. Verifica se tem usuário logado
+    const userStored = localStorage.getItem('user');
+    if (userStored) {
+      setUser(JSON.parse(userStored));
+    }
+  }, []);
+
+  // Função de Logout
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    setUser(null);
+    router.refresh();
+  };
+
+  // Função do WhatsApp
+  const irParaAgendamento = (servico: Service) => {
+      // Se não tiver logado, o próprio /book vai chutar pro login, mas podemos verificar aqui também
+      router.push(`/book?serviceId=${servico.id}`);
+    };
+
   return (
-    <div className="min-h-screen bg-neutral-50 flex flex-col font-sans">
+    <div className="min-h-screen bg-beleza-50 font-sans text-beleza-900">
       
-      {/* Barra de Navegação (Header) */}
-      <header className="bg-white shadow-sm sticky top-0 z-50">
-        <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-amber-700 tracking-tighter">
-            Belez<span className="text-black">A</span>fro
-          </h1>
-          <nav className="flex gap-4">
-            <button className="text-gray-600 hover:text-amber-700 font-medium transition">
-              Catálogo
-            </button>
-            <button className="bg-amber-700 hover:bg-amber-800 text-white px-5 py-2 rounded-full font-medium transition shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
-              Login / Entrar
-            </button>
-          </nav>
+      {/* Header com Logo e Login */}
+      <header className="bg-beleza-250 backdrop-blur-sm shadow-sm sticky top-0 z-50">
+        <div className="max-w-6xl mx-auto px-4 py-2 flex justify-between items-center">
+          
+          {/* Logo */}
+          <div className="flex items-center gap-3">
+             <img src="/logo.jpeg" alt="Belezafro Logo" className="h-20 w-20 object-contain rounded-md" />
+          </div>
+
+{/* Área do Usuário / Menu */}
+          <div className="relative">
+            {user ? (
+              // === SE ESTIVER LOGADO ===
+              <div>
+                {/* Botão que abre o menu */}
+                <button 
+                  onClick={() => setMenuOpen(!menuOpen)}
+                  className="flex items-center gap-2 text-sm font-medium text-beleza-700 hover:text-beleza-500 transition focus:outline-none"
+                >
+                  <span>Olá, {user.name.split(' ')[0]}</span>
+                  {/* Setinha para baixo */}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={`transition-transform duration-200 ${menuOpen ? 'rotate-180' : ''}`}><path d="m6 9 6 6 6-6"/></svg>
+                </button>
+
+                {/* O Menu Dropdown Flutuante */}
+                {menuOpen && (
+                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-xl border border-beleza-100 py-2 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
+                    
+                    {/* Item 1: Perfil (Futuro) */}
+                    <Link 
+                      href="/profile" 
+                      className="block px-4 py-2 text-sm text-beleza-700 hover:bg-beleza-50 hover:text-beleza-900 transition"
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      👤 Meu Perfil
+                    </Link>
+
+                    {/* Item 2: Painel Admin (SÓ APARECE SE FOR ADMIN) */}
+                    {user.role === 'ADMIN' && (
+                      <Link 
+                        href="/admin" 
+                        className="block px-4 py-2 text-sm text-beleza-700 hover:bg-beleza-50 hover:text-beleza-900 transition"
+                        onClick={() => setMenuOpen(false)}
+                      >
+                        ⚙️ Painel Admin
+                      </Link>
+                    )}
+
+                    <div className="h-px bg-beleza-100 my-1"></div>
+
+                    {/* Item 3: Sair */}
+                    <button 
+                      onClick={handleLogout}
+                      className="w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-red-50 transition flex items-center gap-2"
+                    >
+                      🚪 Sair
+                    </button>
+                  </div>
+                )}
+              </div>
+            ) : (
+              // === SE NÃO ESTIVER LOGADO ===
+              <a href="/login" className="text-sm font-bold text-beleza-500 hover:text-beleza-300 transition border border-beleza-200 px-4 py-2 rounded-full hover:bg-beleza-50">
+                Entrar / Cadastrar
+              </a>
+            )}
+          </div>
         </div>
       </header>
 
-      {/* Seção Principal (Hero) */}
-      <main className="flex-1 flex flex-col items-center justify-center text-center px-4 py-20 bg-[url('https://images.unsplash.com/photo-1605218427335-3a702513f150?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center relative">
-        {/* Overlay escuro para ler o texto */}
-        <div className="absolute inset-0 bg-black/60"></div>
-        
-        <div className="relative z-10 max-w-3xl space-y-6">
-          <span className="uppercase tracking-widest text-amber-400 font-semibold text-sm">
-            Estilo • Ancestralidade • Beleza
-          </span>
-          <h2 className="text-5xl md:text-7xl font-extrabold text-white leading-tight">
-            Sua coroa merece <br/> o melhor cuidado.
-          </h2>
-          <p className="text-lg text-gray-200 max-w-xl mx-auto">
-            Agende seu horário online em segundos. Especialistas em Box Braids, Nagô, Twist e muito mais.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8">
-            <button className="bg-amber-600 text-white px-8 py-4 rounded-lg text-lg font-bold hover:bg-amber-700 transition w-full sm:w-auto">
-              Agendar Horário
-            </button>
-            <button className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-bold hover:bg-white/10 transition w-full sm:w-auto">
-              Ver Catálogo
-            </button>
-          </div>
+      {/* Hero Section */}
+      <main className="relative py-24 px-4 text-center overflow-hidden">
+        <div className="absolute inset-0 bg-beleza-200 opacity-90"></div>
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1627918491244-6a0664273200?q=80&w=2000')] bg-cover bg-center mix-blend-overlay opacity-20"></div>
+
+        <div className="relative z-10 max-w-3xl mx-auto space-y-6">
+            <span className="text-beleza-accent font-semibold tracking-[0.3em] text-sm uppercase">Est. 2019</span>
+            <h2 className="text-5xl md:text-7xl font-extrabold leading-tight text-beleza-900 drop-shadow-sm">
+                Realçando sua <br/>
+                <span className="text-white drop-shadow-md">Ancestralidade</span>
+            </h2>
+            <p className="text-lg text-beleza-900/80 font-medium max-w-xl mx-auto">
+                Especialistas em tranças e estética afro.
+            </p>
         </div>
       </main>
 
-      {/* Rodapé Simples */}
-      <footer className="bg-neutral-900 text-neutral-400 py-8 text-center text-sm">
-        <p>© 2025 BelezAfro. Sistema de Agendamento Profissional.</p>
-        <div className="flex justify-center gap-4 mt-2">
-          <span>Status do Sistema: <span className="text-green-500">● Online</span></span>
+      {/* Catálogo Real */}
+      <section className="max-w-7xl mx-auto px-2 md:px-4 py-12 md:py-20">
+        <div className="text-center mb-12">
+            <h3 className="text-3xl font-bold text-beleza-900 mb-2">Nossos Serviços</h3>
+            <div className="w-16 h-1 bg-beleza-300 mx-auto rounded-full"></div>
         </div>
+        
+        {services.length === 0 ? (
+          <p className="text-center text-beleza-400">Carregando catálogo...</p>
+        ) : (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
+            {services.map((service) => (
+              <div key={service.id} className="bg-white rounded-xl shadow-sm hover:shadow-xl transition duration-300 overflow-hidden border border-beleza-100 flex flex-col group">
+                
+                {/* Imagem Story (9:16) */}
+                <div className="aspect-[9/16] w-full bg-beleza-100 relative overflow-hidden">
+                  {service.image_url ? (
+                    <img 
+                      src={service.image_url} 
+                      alt={service.name} 
+                      className="w-full h-full object-cover transition duration-500 group-hover:scale-105"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center bg-beleza-50 text-beleza-200">
+                      <span className="text-2xl opacity-50">✦</span>
+                    </div>
+                  )}
+                  {/* Preço */}
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4 pt-12 flex items-end">
+                    <p className="text-white font-bold text-lg">R$ {Number(service.price).toFixed(0)}</p>
+                  </div>
+                </div>
+                
+                <div className="p-3 md:p-4 flex-1 flex flex-col">
+                  <div className="mb-2">
+                    <h4 className="text-sm md:text-lg font-bold text-beleza-900 leading-tight group-hover:text-beleza-300 transition">
+                        {service.name}
+                    </h4>
+                  </div>
+                  
+                  <p className="text-beleza-400 text-xs mb-3 line-clamp-2 hidden md:block">
+                    {service.description || "Acabamento impecável."}
+                  </p>
+                  
+                  <div className="flex items-center gap-1 text-xs text-beleza-400 mb-4 font-medium">
+                    <span>⏱️ {service.duration_minutes} min</span>
+                  </div>
+
+                  <button 
+                    onClick={() => irParaAgendamento(service)}
+                    className="w-full bg-beleza-900 hover:bg-beleza-300 text-white font-medium py-2.5 rounded-lg text-xs md:text-sm transition flex items-center justify-center gap-2 mt-auto"
+                  >
+                    <span>Agendar</span>
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-beleza-900 text-beleza-100 py-12 text-center">
+        <div className="flex flex-col items-center justify-center gap-4 mb-6">
+             <p className="text-beleza-200 text-sm max-w-xs mx-auto">
+                Realçando sua ancestralidade através da arte das tranças.
+             </p>
+        </div>
+        <p className="text-xs text-beleza-500">© 2025 Belezafro. Todos os direitos reservados.</p>
       </footer>
     </div>
   );

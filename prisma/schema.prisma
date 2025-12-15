@@ -1,10 +1,14 @@
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  // Habilita o gerenciamento de extensões do Postgres
+  previewFeatures = ["postgresqlExtensions"] 
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider   = "postgresql"
+  url        = env("DATABASE_URL")
+  // Diz qual extensão instalar no banco
+  extensions = [uuidOssp(map: "uuid-ossp")] 
 }
 
 model appointments {
@@ -39,16 +43,23 @@ model services {
 }
 
 model users {
-  id            String         @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
-  name          String         @db.VarChar(255)
-  email         String         @unique @db.VarChar(255)
-  password_hash String         @db.VarChar(255)
-  phone         String?        @db.VarChar(20)
-  role          user_role?     @default(CLIENT)
-  created_at    DateTime?      @default(now()) @db.Timestamptz(6)
+  id            String     @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  name          String     @db.VarChar(255)
+  email         String     @unique @db.VarChar(255)
+  password_hash String     @db.VarChar(255)
+  
+  // === MUDANÇAS AQUI ===
+  cpf           String     @unique @db.VarChar(20) // Novo campo CPF (Único)
+  phone         String     @db.VarChar(20)         // Removi o '?' (Agora é obrigatório)
+  // =====================
+  // NOVOS CAMPOS PARA VALIDAÇÃO
+  verified          Boolean  @default(false) // Começa falso
+  verificationToken String?  // O código secreto
+  
+  role          user_role? @default(CLIENT)
+  created_at    DateTime?  @default(now()) @db.Timestamptz(6)
   appointments  appointments[]
 }
-
 enum appointment_status {
   PENDING
   CONFIRMED
