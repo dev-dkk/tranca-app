@@ -114,12 +114,12 @@ export default function Home() {
                         className="block px-4 py-2 text-sm text-beleza-700 hover:bg-beleza-50 hover:text-beleza-900 transition"
                         onClick={() => setMenuOpen(false)}
                       >
-                        ⚙️ Painel Admin
+                        ⚙️ Adicionar Trança
                       </Link>
                     )}
                     {user && user.role === 'ADMIN' && (
-                        <Link href="/admin-agenda" className="block px-4 py-2 text-sm text-beleza-700 hover:bg-beleza-50 hover:text-beleza-900 transition">
-                            🔒 Área Admin: Clientes
+                        <Link href="/dashboard" className="block px-4 py-2 text-sm text-beleza-700 hover:bg-beleza-50 hover:text-beleza-900 transition">
+                            📊 Painel Admin
                         </Link>
                     )}
 

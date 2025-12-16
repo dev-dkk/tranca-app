@@ -414,6 +414,69 @@ app.get('/appointments/admin/all', async (req, res) => {
     }
 });
 
+// ==========================================
+// --- DASHBOARD (MÉTRICAS) ---
+// ==========================================
+app.get('/dashboard/metrics', async (req, res) => {
+    try {
+        const now = new Date();
+        // Pega o primeiro dia do mês atual (ex: 01/12/2025)
+        const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+        
+        // 1. FATURAMENTO E CONTAGEM (Só Confirmados deste mês)
+        // Buscamos todos os agendamentos do mês com o preço do serviço
+        const agendamentosDoMes = await prisma.appointments.findMany({
+            where: {
+                start_time: { gte: startOfMonth },
+                status: 'CONFIRMED'
+            },
+            include: { services: true } // Traz o preço junto
+        });
+
+        const totalAgendamentos = agendamentosDoMes.length;
+        
+        // Soma os preços (Reduce é uma função que acumula valores)
+        const faturamento = agendamentosDoMes.reduce((total, app) => {
+            return total + Number(app.services?.price || 0);
+        }, 0);
+
+        // 2. SERVIÇO MAIS POPULAR (Geral)
+        const topServiceGroup = await prisma.appointments.groupBy({
+            by: ['service_id'],
+            _count: { service_id: true },
+            orderBy: {
+                _count: { service_id: 'desc' }
+            },
+            take: 1 // Pega só o top 1
+        });
+
+        let nomeServicoTop = "Nenhum ainda";
+        let qtdServicoTop = 0;
+
+        if (topServiceGroup.length > 0) {
+            const topId = topServiceGroup[0].service_id;
+            qtdServicoTop = topServiceGroup[0]._count.service_id;
+            
+            // Busca o nome do serviço pelo ID
+            const service = await prisma.services.findUnique({ where: { id: topId } });
+            if (service) nomeServicoTop = service.name;
+        }
+
+        res.json({
+            faturamento,
+            totalAgendamentos,
+            topServico: {
+                nome: nomeServicoTop,
+                qtd: qtdServicoTop
+            }
+        });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Erro ao calcular métricas" });
+    }
+});
+
 const PORT = 3001;
 app.listen(PORT, () => {
     console.log(`🚀 Servidor rodando em http://localhost:${PORT}`);

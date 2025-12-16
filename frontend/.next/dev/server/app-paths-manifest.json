@@ -3,6 +3,7 @@
   "/admin-agenda/page": "app/admin-agenda/page.js",
   "/admin/page": "app/admin/page.js",
   "/book/page": "app/book/page.js",
+  "/dashboard/page": "app/dashboard/page.js",
   "/login/page": "app/login/page.js",
   "/my-appointments/page": "app/my-appointments/page.js",
   "/page": "app/page.js",
