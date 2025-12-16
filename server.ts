@@ -9,6 +9,8 @@ import nodemailer from 'nodemailer';
 import crypto from 'crypto'; // Para gerar o token aleatório
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import { format } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
 
 const app = express();
 const prisma = new PrismaClient();
@@ -276,30 +278,25 @@ app.get('/appointments/availability', async (req, res) => {
     }
 });
 
-// 2. CRIAR AGENDAMENTO (COM CÁLCULO DE END_TIME)
+// 2. CRIAR AGENDAMENTO (COM E-MAILS DE CONFIRMAÇÃO)
 app.post('/appointments', async (req, res) => {
     const { userId, serviceId, date } = req.body;
 
-    console.log("Criando agendamento:", { userId, serviceId, date });
-
     try {
-        // 1. Buscamos o serviço para saber a duração dele
-        const service = await prisma.services.findUnique({
-            where: { id: serviceId }
-        });
+        // 1. Buscamos Serviço e Usuário (para pegar os nomes e emails)
+        const service = await prisma.services.findUnique({ where: { id: serviceId } });
+        const user = await prisma.users.findUnique({ where: { id: userId } });
 
-        if (!service) {
-            return res.status(404).json({ error: "Serviço não encontrado." });
+        if (!service || !user) {
+            return res.status(404).json({ error: "Serviço ou Usuário não encontrado." });
         }
 
-        // 2. Calculamos a Hora Final (Start + Duração)
+        // 2. Cálculos de Tempo
         const startTime = new Date(date);
         const endTime = new Date(startTime);
         endTime.setMinutes(startTime.getMinutes() + service.duration_minutes);
 
-        // 3. Verificamos conflito de horário
-        // (Lógica simples: verifica se o inicio bate. 
-        // Idealmente verificaríamos intervalos, mas vamos manter simples por enquanto)
+        // 3. Verifica conflito
         const exists = await prisma.appointments.findFirst({
             where: { 
                 start_time: startTime, 
@@ -309,24 +306,114 @@ app.post('/appointments', async (req, res) => {
 
         if (exists) return res.status(400).json({ error: "Horário indisponível!" });
 
-        // 4. Cria o agendamento completo
+        // 4. Salva no Banco
         const newApp = await prisma.appointments.create({
             data: {
                 user_id: userId,
                 service_id: serviceId,
                 start_time: startTime,
-                end_time: endTime, 
+                end_time: endTime,
                 status: "CONFIRMED"
             }
         });
+
+        // ==========================================
+        // --- ENVIO DE E-MAILS ---
+        // ==========================================
+        
+        // Formata a data para ler fácil (ex: "Segunda-feira, 20 de Dezembro às 14:00")
+        const dataFormatada = format(startTime, "EEEE, d 'de' MMMM 'às' HH:mm", { locale: ptBR });
+        
+        // E-mail 1: Para o CLIENTE
+        const mailOptionsClient = {
+            from: '"Belezafro Agenda" <seu.email.real@gmail.com>', // Seu email aqui
+            to: user.email, // Email do cliente
+            subject: '✅ Agendamento Confirmado! - Belezafro',
+            html: `
+                <div style="font-family: Arial, color: #333;">
+                    <h1 style="color: #A35841;">Olá, ${user.name}!</h1>
+                    <p>Seu agendamento foi realizado com sucesso.</p>
+                    <hr/>
+                    <p><strong>Serviço:</strong> ${service.name}</p>
+                    <p><strong>Data:</strong> ${dataFormatada}</p>
+                    <p><strong>Valor:</strong> R$ ${Number(service.price).toFixed(2)}</p>
+                    <p><strong>Duração:</strong> ${service.duration_minutes} min</p>
+                    <hr/>
+                    <p>Te aguardamos no salão! Qualquer dúvida, chame no WhatsApp.</p>
+                </div>
+            `
+        };
+
+        // E-mail 2: Para o ADMIN (Você)
+        const mailOptionsAdmin = {
+            from: '"Sistema Belezafro" <dkntj27@gmail.com>',
+            to: 'dknjt27@gmail.com', // Manda pra você mesmo
+            subject: `📅 Novo Agendamento: ${user.name}`,
+            html: `
+                <div style="font-family: Arial;">
+                    <h2>Novo Cliente Agendado!</h2>
+                    <p><strong>Cliente:</strong> ${user.name} (${user.phone})</p>
+                    <p><strong>Serviço:</strong> ${service.name}</p>
+                    <p><strong>Quando:</strong> ${dataFormatada}</p>
+                    <br/>
+                    <a href="http://localhost:3000/admin" style="background: #333; color: #fff; padding: 10px; text-decoration: none;">Ver no Painel</a>
+                </div>
+            `
+        };
+
+        // Envia os e-mails (sem travar a resposta se der erro no email)
+        transporter.sendMail(mailOptionsClient).catch(err => console.error("Erro email cliente:", err));
+        transporter.sendMail(mailOptionsAdmin).catch(err => console.error("Erro email admin:", err));
+
+        // ==========================================
 
         res.json(newApp);
 
     } catch (error) {
         console.error("ERRO AO CRIAR:", error);
-        res.status(500).json({ error: "Erro ao agendar. Verifique o terminal." });
+        res.status(500).json({ error: "Erro ao agendar." });
     }
 });
+
+// ==========================================
+// --- LISTAGEM DE AGENDAMENTOS ---
+// ==========================================
+
+// 1. MEUS AGENDAMENTOS (Para o Cliente ver o histórico dele)
+app.get('/appointments/my/:userId', async (req, res) => {
+    const { userId } = req.params;
+    try {
+        const myApps = await prisma.appointments.findMany({
+            where: { user_id: userId },
+            include: { 
+                services: true // Traz o nome e preço do serviço junto
+            },
+            orderBy: { start_time: 'desc' } // Mais recentes primeiro
+        });
+        res.json(myApps);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Erro ao buscar agendamentos." });
+    }
+});
+
+// 2. AGENDA GERAL (Para o Admin ver tudo)
+app.get('/appointments/admin/all', async (req, res) => {
+    try {
+        const allApps = await prisma.appointments.findMany({
+            include: {
+                users: true,   // Traz dados do cliente (Nome, Telefone)
+                services: true // Traz dados do serviço
+            },
+            orderBy: { start_time: 'asc' } // Do mais antigo para o futuro
+        });
+        res.json(allApps);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Erro ao buscar agenda geral." });
+    }
+});
+
 const PORT = 3001;
 app.listen(PORT, () => {
     console.log(`🚀 Servidor rodando em http://localhost:${PORT}`);

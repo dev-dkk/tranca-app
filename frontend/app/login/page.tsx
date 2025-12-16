@@ -31,11 +31,11 @@ export default function LoginPage() {
       localStorage.setItem('user', JSON.stringify(data.user));
 
       // Redirecionar baseado no cargo (Role)
-      if (data.user.role === 'ADMIN') {
+     /* if (data.user.role === 'ADMIN') {
         router.push('/admin');
-      } else {
+      } else {*/
         router.push('/'); // Futuramente mandaremos para /dashboard-cliente
-      }
+    /*  }*/
 
     } catch (err: any) {
       setError(err.message);

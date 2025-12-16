@@ -41,12 +41,10 @@ function LoginPage() {
             localStorage.setItem('token', data.token);
             localStorage.setItem('user', JSON.stringify(data.user));
             // Redirecionar baseado no cargo (Role)
-            if (data.user.role === 'ADMIN') {
-                router.push('/admin');
-            } else {
-                router.push('/'); // Futuramente mandaremos para /dashboard-cliente
-            }
-        } catch (err) {
+            /* if (data.user.role === 'ADMIN') {
+        router.push('/admin');
+      } else {*/ router.push('/'); // Futuramente mandaremos para /dashboard-cliente
+        /*  }*/ } catch (err) {
             setError(err.message);
         } finally{
             setLoading(false);

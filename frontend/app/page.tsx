@@ -100,6 +100,12 @@ export default function Home() {
                     >
                       👤 Meu Perfil
                     </Link>
+                    {user.role !== 'ADMIN' &&(
+                    <Link href="/my-appointments" className="block px-4 py-2 text-sm text-beleza-700 hover:bg-beleza-50 hover:text-beleza-900 transition">
+                        📅 Meus Agendamentos
+                    </Link>                      
+                    )}
+
 
                     {/* Item 2: Painel Admin (SÓ APARECE SE FOR ADMIN) */}
                     {user.role === 'ADMIN' && (
@@ -110,6 +116,11 @@ export default function Home() {
                       >
                         ⚙️ Painel Admin
                       </Link>
+                    )}
+                    {user && user.role === 'ADMIN' && (
+                        <Link href="/admin-agenda" className="block px-4 py-2 text-sm text-beleza-700 hover:bg-beleza-50 hover:text-beleza-900 transition">
+                            🔒 Área Admin: Clientes
+                        </Link>
                     )}
 
                     <div className="h-px bg-beleza-100 my-1"></div>
