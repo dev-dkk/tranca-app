@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
+import AdminSidebar from '../components/AdminSideBar';
 
 export default function AdminAgenda() {
   const router = useRouter();
@@ -29,13 +30,17 @@ export default function AdminAgenda() {
         })
         .finally(() => setLoading(false));
   }, [router]);
+return (
+    <div className="min-h-screen bg-gray-50 flex">
+        {/* 1. Menu Lateral */}
+        <AdminSidebar />
 
-  return (
+        {/* 2. Conteúdo Principal (Com margem na esquerda) */}
+        <div className="flex-1 ml-64 p-8">
     <div className="min-h-screen bg-gray-100 p-6">
         <div className="max-w-6xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden">
             <div className="bg-beleza-900 p-6 flex justify-between items-center text-white">
                 <h1 className="text-2xl font-bold">📅 Agenda de Clientes</h1>
-                <button onClick={() => router.push('/')} className="text-sm text-beleza-200 hover:text-white">Voltar para Home</button>
             </div>
 
             <div className="overflow-x-auto">
@@ -84,5 +89,9 @@ export default function AdminAgenda() {
             </div>
         </div>
     </div>
-  );
+
+        </div>
+    </div>
+);
+
 }

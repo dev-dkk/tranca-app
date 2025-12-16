@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import AdminSidebar from '../components/AdminSideBar';
 
 export default function DashboardPage() {
   const router = useRouter();
@@ -24,22 +25,23 @@ export default function DashboardPage() {
 
   if (loading) return <div className="p-10 text-center">Calculando lucros...</div>;
 
-  return (
-    <div className="min-h-screen bg-gray-50 p-6">
-        <div className="max-w-6xl mx-auto">
-            
+return (
+    <div className="min-h-screen bg-gray-50 flex">
+        {/* 1. Menu Lateral */}
+        <AdminSidebar />
+
+        {/* 2. Conteúdo Principal (Com margem na esquerda) */}
+        <div className="flex-1 ml-64 p-8">
             {/* Cabeçalho */}
             <div className="flex justify-between items-center mb-8">
                 <div>
-                    <h1 className="text-3xl font-bold text-beleza-900">Painel de Controle</h1>
-                    <p className="text-gray-500">Visão geral do seu negócio este mês.</p>
+                    <h1 className="text-3xl font-bold text-amber-700 mb-2"><span>📊</span>Dashboard</h1>
+
                 </div>
-                <button onClick={() => router.push('/')} className="text-beleza-700 underline font-medium">
-                    Voltar ao Site
-                </button>
             </div>
 
-            {/* Grid de Cards */}
+             <h2 className="text-3xl font-bold text-beleza-900 mb-6">Visão Geral</h2>
+                         {/* Grid de Cards */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                 
                 {/* Card 1: Faturamento */}
@@ -76,25 +78,7 @@ export default function DashboardPage() {
                     <div className="bg-purple-100 p-3 rounded-full text-2xl">🏆</div>
                 </div>
             </div>
-
-            {/* Atalhos Rápidos */}
-            <h3 className="text-xl font-bold text-gray-700 mb-4">Acesso Rápido</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <button 
-                    onClick={() => router.push('/admin-agenda')}
-                    className="p-4 bg-beleza-900 text-white rounded-xl shadow hover:bg-black transition flex items-center justify-center gap-2 font-bold"
-                >
-                    📅 Ver Agenda Completa
-                </button>
-                <button 
-                    onClick={() => router.push('/')}
-                    className="p-4 bg-white border border-beleza-200 text-beleza-900 rounded-xl shadow hover:bg-gray-50 transition flex items-center justify-center gap-2 font-bold"
-                >
-                    💇‍♀️ Ver Catálogo no Site
-                </button>
-            </div>
-
         </div>
     </div>
-  );
+);
 }

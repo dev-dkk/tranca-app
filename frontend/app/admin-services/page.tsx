@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 // Importando verificação de login como admin
 import { useRouter } from 'next/navigation';
+import AdminSidebar from '../components/AdminSideBar';
 
 // Tipagem dos dados
 interface Service {
@@ -171,16 +172,21 @@ export default function AdminPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6 md:p-8 font-sans text-gray-800">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
-        
-        {/* === COLUNA DA ESQUERDA: Dashboard e Lista === */}
+    <div className="min-h-screen bg-gray-50 flex font-sans text-gray-800">
+        {/* 1. Menu Lateral */}
+        <AdminSidebar />
+
+        {/* 2. Conteúdo Principal */}
+        <div className="flex-1 ml-64 p-8">
+            {/* ... Todo o seu código antigo vai aqui dentro da div ... */}
+            
+            <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        {/* === COLUNA DA ESQUERDA: Dashboard e Lista === */}
         <div className="space-y-8">
             
             {/* Cabeçalho */}
             <div>
-                <h1 className="text-3xl font-bold text-amber-700 mb-2">Painel Admin</h1>
-                <p className="text-gray-500">Gerencie seu catálogo e visualize métricas.</p>
+                <h1 className="text-3xl font-bold text-amber-700 mb-2">Serviços</h1>
             </div>
             
             {/* Gráfico */}
@@ -256,8 +262,7 @@ export default function AdminPage() {
                 </ul>
             </div>
         </div>
-
-        {/* === COLUNA DA DIREITA: Formulário === */}
+                        {/* === COLUNA DA DIREITA: Formulário === */}
         <div>
             <div className="bg-white p-8 rounded-xl shadow-lg border-t-4 border-amber-600 sticky top-8">
             <h2 className="text-2xl font-bold mb-6 text-gray-800 border-b pb-2">
@@ -366,8 +371,8 @@ export default function AdminPage() {
             </form>
             </div>
         </div>
-
-      </div>
+            </div>
+        </div>
     </div>
   );
 }

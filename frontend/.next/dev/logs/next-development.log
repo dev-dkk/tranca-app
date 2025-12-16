@@ -329,3 +329,1322 @@ https://nextjs.org/docs/messages/module-not-found
        or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
        height and width.
 [23:27:25.038] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[24:15:27.642] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[24:17:10.964] Server  LOG      ✓ Compiled in 46ms
+[24:20:13.450] Server  LOG      ✓ Compiled in 31ms
+[24:24:18.047] Server  ERROR    ⨯ ./frontend/app/dashboard/page.tsx:5:1
+Module not found: Can't resolve '../../components/AdminSidebar'
+  3 | import { useEffect, useState } from 'react';
+  4 | import { useRouter } from 'next/navigation';
+> 5 | import AdminSidebar from '../../components/AdminSidebar';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export default function DashboardPage() {
+  8 |   const router = useRouter();
+
+
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/dashboard/page.tsx [Client Component Browser]
+    ./frontend/app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/dashboard/page.tsx [Client Component SSR]
+    ./frontend/app/dashboard/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[24:24:18.049] Server  ERROR    ⨯ ./frontend/app/dashboard/page.tsx:5:1
+Module not found: Can't resolve '../../components/AdminSidebar'
+  3 | import { useEffect, useState } from 'react';
+  4 | import { useRouter } from 'next/navigation';
+> 5 | import AdminSidebar from '../../components/AdminSidebar';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export default function DashboardPage() {
+  8 |   const router = useRouter();
+
+
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/dashboard/page.tsx [Client Component Browser]
+    ./frontend/app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/dashboard/page.tsx [Client Component SSR]
+    ./frontend/app/dashboard/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[24:24:18.052] Server  ERROR    ⨯ ./frontend/app/dashboard/page.tsx:5:1
+Module not found: Can't resolve '../../components/AdminSidebar'
+  3 | import { useEffect, useState } from 'react';
+  4 | import { useRouter } from 'next/navigation';
+> 5 | import AdminSidebar from '../../components/AdminSidebar';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export default function DashboardPage() {
+  8 |   const router = useRouter();
+
+
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/dashboard/page.tsx [Client Component Browser]
+    ./frontend/app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/dashboard/page.tsx [Client Component SSR]
+    ./frontend/app/dashboard/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[24:24:18.054] Server  ERROR    ⨯ ./frontend/app/dashboard/page.tsx:5:1
+Module not found: Can't resolve '../../components/AdminSidebar'
+  3 | import { useEffect, useState } from 'react';
+  4 | import { useRouter } from 'next/navigation';
+> 5 | import AdminSidebar from '../../components/AdminSidebar';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export default function DashboardPage() {
+  8 |   const router = useRouter();
+
+
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/dashboard/page.tsx [Client Component Browser]
+    ./frontend/app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/dashboard/page.tsx [Client Component SSR]
+    ./frontend/app/dashboard/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[24:24:18.058] Server  ERROR    ⨯ ./frontend/app/dashboard/page.tsx:5:1
+Module not found: Can't resolve '../../components/AdminSidebar'
+  3 | import { useEffect, useState } from 'react';
+  4 | import { useRouter } from 'next/navigation';
+> 5 | import AdminSidebar from '../../components/AdminSidebar';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export default function DashboardPage() {
+  8 |   const router = useRouter();
+
+
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/dashboard/page.tsx [Client Component Browser]
+    ./frontend/app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/dashboard/page.tsx [Client Component SSR]
+    ./frontend/app/dashboard/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[24:24:18.060] Server  ERROR    ⨯ ./frontend/app/dashboard/page.tsx:5:1
+Module not found: Can't resolve '../../components/AdminSidebar'
+  3 | import { useEffect, useState } from 'react';
+  4 | import { useRouter } from 'next/navigation';
+> 5 | import AdminSidebar from '../../components/AdminSidebar';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export default function DashboardPage() {
+  8 |   const router = useRouter();
+
+
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/dashboard/page.tsx [Client Component Browser]
+    ./frontend/app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/dashboard/page.tsx [Client Component SSR]
+    ./frontend/app/dashboard/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[24:24:18.062] Server  ERROR    ⨯ ./frontend/app/dashboard/page.tsx:5:1
+Module not found: Can't resolve '../../components/AdminSidebar'
+  3 | import { useEffect, useState } from 'react';
+  4 | import { useRouter } from 'next/navigation';
+> 5 | import AdminSidebar from '../../components/AdminSidebar';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export default function DashboardPage() {
+  8 |   const router = useRouter();
+
+
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/dashboard/page.tsx [Client Component Browser]
+    ./frontend/app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/dashboard/page.tsx [Client Component SSR]
+    ./frontend/app/dashboard/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[24:24:18.063] Server  ERROR    ⨯ ./frontend/app/dashboard/page.tsx:5:1
+Module not found: Can't resolve '../../components/AdminSidebar'
+  3 | import { useEffect, useState } from 'react';
+  4 | import { useRouter } from 'next/navigation';
+> 5 | import AdminSidebar from '../../components/AdminSidebar';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export default function DashboardPage() {
+  8 |   const router = useRouter();
+
+
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/dashboard/page.tsx [Client Component Browser]
+    ./frontend/app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/dashboard/page.tsx [Client Component SSR]
+    ./frontend/app/dashboard/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[24:24:18.067] Server  ERROR    ⨯ ./frontend/app/dashboard/page.tsx:5:1
+Module not found: Can't resolve '../../components/AdminSidebar'
+  3 | import { useEffect, useState } from 'react';
+  4 | import { useRouter } from 'next/navigation';
+> 5 | import AdminSidebar from '../../components/AdminSidebar';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export default function DashboardPage() {
+  8 |   const router = useRouter();
+
+
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/dashboard/page.tsx [Client Component Browser]
+    ./frontend/app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/dashboard/page.tsx [Client Component SSR]
+    ./frontend/app/dashboard/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[24:24:18.068] Server  ERROR    ⨯ ./frontend/app/dashboard/page.tsx:5:1
+Module not found: Can't resolve '../../components/AdminSidebar'
+  3 | import { useEffect, useState } from 'react';
+  4 | import { useRouter } from 'next/navigation';
+> 5 | import AdminSidebar from '../../components/AdminSidebar';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export default function DashboardPage() {
+  8 |   const router = useRouter();
+
+
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/dashboard/page.tsx [Client Component Browser]
+    ./frontend/app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/dashboard/page.tsx [Client Component SSR]
+    ./frontend/app/dashboard/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[24:24:18.072] Server  ERROR    ⨯ ./frontend/app/dashboard/page.tsx:5:1
+Module not found: Can't resolve '../../components/AdminSidebar'
+  3 | import { useEffect, useState } from 'react';
+  4 | import { useRouter } from 'next/navigation';
+> 5 | import AdminSidebar from '../../components/AdminSidebar';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export default function DashboardPage() {
+  8 |   const router = useRouter();
+
+
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/dashboard/page.tsx [Client Component Browser]
+    ./frontend/app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/dashboard/page.tsx [Client Component SSR]
+    ./frontend/app/dashboard/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[24:24:18.074] Server  ERROR    ⨯ ./frontend/app/dashboard/page.tsx:5:1
+Module not found: Can't resolve '../../components/AdminSidebar'
+  3 | import { useEffect, useState } from 'react';
+  4 | import { useRouter } from 'next/navigation';
+> 5 | import AdminSidebar from '../../components/AdminSidebar';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export default function DashboardPage() {
+  8 |   const router = useRouter();
+
+
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/dashboard/page.tsx [Client Component Browser]
+    ./frontend/app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/dashboard/page.tsx [Client Component SSR]
+    ./frontend/app/dashboard/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[24:24:18.085] Server  LOG      ✓ Compiled in 52ms
+[24:24:18.801] Browser ERROR   ./frontend/app/dashboard/page.tsx:5:1
+Module not found: Can't resolve '../../components/AdminSidebar'
+  3 | import { useEffect, useState } from 'react';
+  4 | import { useRouter } from 'next/navigation';
+> 5 | import AdminSidebar from '../../components/AdminSidebar';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export default function DashboardPage() {
+  8 |   const router = useRouter();
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/dashboard/page.tsx [Client Component Browser]
+    ./frontend/app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/dashboard/page.tsx [Client Component SSR]
+    ./frontend/app/dashboard/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[24:25:01.794] Server  ERROR    ⨯ ./frontend/app/dashboard/page.tsx:5:1
+Module not found: Can't resolve '../../components/AdminSideBar'
+  3 | import { useEffect, useState } from 'react';
+  4 | import { useRouter } from 'next/navigation';
+> 5 | import AdminSidebar from '../../components/AdminSideBar';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export default function DashboardPage() {
+  8 |   const router = useRouter();
+
+
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/dashboard/page.tsx [Client Component Browser]
+    ./frontend/app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/dashboard/page.tsx [Client Component SSR]
+    ./frontend/app/dashboard/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[24:25:01.796] Server  ERROR    ⨯ ./frontend/app/dashboard/page.tsx:5:1
+Module not found: Can't resolve '../../components/AdminSideBar'
+  3 | import { useEffect, useState } from 'react';
+  4 | import { useRouter } from 'next/navigation';
+> 5 | import AdminSidebar from '../../components/AdminSideBar';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export default function DashboardPage() {
+  8 |   const router = useRouter();
+
+
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/dashboard/page.tsx [Client Component Browser]
+    ./frontend/app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/dashboard/page.tsx [Client Component SSR]
+    ./frontend/app/dashboard/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[24:25:01.798] Server  ERROR    ⨯ ./frontend/app/dashboard/page.tsx:5:1
+Module not found: Can't resolve '../../components/AdminSideBar'
+  3 | import { useEffect, useState } from 'react';
+  4 | import { useRouter } from 'next/navigation';
+> 5 | import AdminSidebar from '../../components/AdminSideBar';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export default function DashboardPage() {
+  8 |   const router = useRouter();
+
+
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/dashboard/page.tsx [Client Component Browser]
+    ./frontend/app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/dashboard/page.tsx [Client Component SSR]
+    ./frontend/app/dashboard/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[24:25:01.800] Server  ERROR    ⨯ ./frontend/app/dashboard/page.tsx:5:1
+Module not found: Can't resolve '../../components/AdminSideBar'
+  3 | import { useEffect, useState } from 'react';
+  4 | import { useRouter } from 'next/navigation';
+> 5 | import AdminSidebar from '../../components/AdminSideBar';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export default function DashboardPage() {
+  8 |   const router = useRouter();
+
+
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/dashboard/page.tsx [Client Component Browser]
+    ./frontend/app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/dashboard/page.tsx [Client Component SSR]
+    ./frontend/app/dashboard/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[24:25:01.802] Server  ERROR    ⨯ ./frontend/app/dashboard/page.tsx:5:1
+Module not found: Can't resolve '../../components/AdminSideBar'
+  3 | import { useEffect, useState } from 'react';
+  4 | import { useRouter } from 'next/navigation';
+> 5 | import AdminSidebar from '../../components/AdminSideBar';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export default function DashboardPage() {
+  8 |   const router = useRouter();
+
+
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/dashboard/page.tsx [Client Component Browser]
+    ./frontend/app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/dashboard/page.tsx [Client Component SSR]
+    ./frontend/app/dashboard/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[24:25:01.805] Server  ERROR    ⨯ ./frontend/app/dashboard/page.tsx:5:1
+Module not found: Can't resolve '../../components/AdminSideBar'
+  3 | import { useEffect, useState } from 'react';
+  4 | import { useRouter } from 'next/navigation';
+> 5 | import AdminSidebar from '../../components/AdminSideBar';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export default function DashboardPage() {
+  8 |   const router = useRouter();
+
+
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/dashboard/page.tsx [Client Component Browser]
+    ./frontend/app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/dashboard/page.tsx [Client Component SSR]
+    ./frontend/app/dashboard/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[24:25:01.807] Server  ERROR    ⨯ ./frontend/app/dashboard/page.tsx:5:1
+Module not found: Can't resolve '../../components/AdminSideBar'
+  3 | import { useEffect, useState } from 'react';
+  4 | import { useRouter } from 'next/navigation';
+> 5 | import AdminSidebar from '../../components/AdminSideBar';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export default function DashboardPage() {
+  8 |   const router = useRouter();
+
+
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/dashboard/page.tsx [Client Component Browser]
+    ./frontend/app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/dashboard/page.tsx [Client Component SSR]
+    ./frontend/app/dashboard/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[24:25:01.809] Server  ERROR    ⨯ ./frontend/app/dashboard/page.tsx:5:1
+Module not found: Can't resolve '../../components/AdminSideBar'
+  3 | import { useEffect, useState } from 'react';
+  4 | import { useRouter } from 'next/navigation';
+> 5 | import AdminSidebar from '../../components/AdminSideBar';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export default function DashboardPage() {
+  8 |   const router = useRouter();
+
+
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/dashboard/page.tsx [Client Component Browser]
+    ./frontend/app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/dashboard/page.tsx [Client Component SSR]
+    ./frontend/app/dashboard/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[24:25:01.813] Server  ERROR    ⨯ ./frontend/app/dashboard/page.tsx:5:1
+Module not found: Can't resolve '../../components/AdminSideBar'
+  3 | import { useEffect, useState } from 'react';
+  4 | import { useRouter } from 'next/navigation';
+> 5 | import AdminSidebar from '../../components/AdminSideBar';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export default function DashboardPage() {
+  8 |   const router = useRouter();
+
+
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/dashboard/page.tsx [Client Component Browser]
+    ./frontend/app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/dashboard/page.tsx [Client Component SSR]
+    ./frontend/app/dashboard/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[24:25:01.814] Server  ERROR    ⨯ ./frontend/app/dashboard/page.tsx:5:1
+Module not found: Can't resolve '../../components/AdminSideBar'
+  3 | import { useEffect, useState } from 'react';
+  4 | import { useRouter } from 'next/navigation';
+> 5 | import AdminSidebar from '../../components/AdminSideBar';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export default function DashboardPage() {
+  8 |   const router = useRouter();
+
+
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/dashboard/page.tsx [Client Component Browser]
+    ./frontend/app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/dashboard/page.tsx [Client Component SSR]
+    ./frontend/app/dashboard/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[24:25:01.817] Server  ERROR    ⨯ ./frontend/app/dashboard/page.tsx:5:1
+Module not found: Can't resolve '../../components/AdminSideBar'
+  3 | import { useEffect, useState } from 'react';
+  4 | import { useRouter } from 'next/navigation';
+> 5 | import AdminSidebar from '../../components/AdminSideBar';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export default function DashboardPage() {
+  8 |   const router = useRouter();
+
+
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/dashboard/page.tsx [Client Component Browser]
+    ./frontend/app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/dashboard/page.tsx [Client Component SSR]
+    ./frontend/app/dashboard/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[24:25:01.819] Server  ERROR    ⨯ ./frontend/app/dashboard/page.tsx:5:1
+Module not found: Can't resolve '../../components/AdminSideBar'
+  3 | import { useEffect, useState } from 'react';
+  4 | import { useRouter } from 'next/navigation';
+> 5 | import AdminSidebar from '../../components/AdminSideBar';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export default function DashboardPage() {
+  8 |   const router = useRouter();
+
+
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/dashboard/page.tsx [Client Component Browser]
+    ./frontend/app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/dashboard/page.tsx [Client Component SSR]
+    ./frontend/app/dashboard/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[24:25:01.837] Server  LOG      ✓ Compiled in 67ms
+[24:25:02.802] Browser ERROR   ./frontend/app/dashboard/page.tsx:5:1
+Module not found: Can't resolve '../../components/AdminSideBar'
+  3 | import { useEffect, useState } from 'react';
+  4 | import { useRouter } from 'next/navigation';
+> 5 | import AdminSidebar from '../../components/AdminSideBar';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export default function DashboardPage() {
+  8 |   const router = useRouter();
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/dashboard/page.tsx [Client Component Browser]
+    ./frontend/app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/dashboard/page.tsx [Client Component SSR]
+    ./frontend/app/dashboard/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[24:28:03.393] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[24:28:05.999] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[24:42:40.701] Server  ERROR    ⨯ ./frontend/app/admin/page.tsx:9:1
+Module not found: Can't resolve '../components/AdminSidebar'
+   7 | // Importando verificação de login como admin
+   8 | import { useRouter } from 'next/navigation';
+>  9 | import AdminSidebar from '../components/AdminSidebar';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 |
+  11 | // Tipagem dos dados
+  12 | interface Service {
+
+
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/admin/page.tsx [Client Component Browser]
+    ./frontend/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/admin/page.tsx [Client Component SSR]
+    ./frontend/app/admin/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[24:42:40.704] Server  ERROR    ⨯ ./frontend/app/admin/page.tsx:9:1
+Module not found: Can't resolve '../components/AdminSidebar'
+   7 | // Importando verificação de login como admin
+   8 | import { useRouter } from 'next/navigation';
+>  9 | import AdminSidebar from '../components/AdminSidebar';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 |
+  11 | // Tipagem dos dados
+  12 | interface Service {
+
+
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/admin/page.tsx [Client Component Browser]
+    ./frontend/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/admin/page.tsx [Client Component SSR]
+    ./frontend/app/admin/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[24:42:40.707] Server  ERROR    ⨯ ./frontend/app/admin/page.tsx:9:1
+Module not found: Can't resolve '../components/AdminSidebar'
+   7 | // Importando verificação de login como admin
+   8 | import { useRouter } from 'next/navigation';
+>  9 | import AdminSidebar from '../components/AdminSidebar';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 |
+  11 | // Tipagem dos dados
+  12 | interface Service {
+
+
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/admin/page.tsx [Client Component Browser]
+    ./frontend/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/admin/page.tsx [Client Component SSR]
+    ./frontend/app/admin/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[24:42:40.711] Server  ERROR    ⨯ ./frontend/app/admin/page.tsx:9:1
+Module not found: Can't resolve '../components/AdminSidebar'
+   7 | // Importando verificação de login como admin
+   8 | import { useRouter } from 'next/navigation';
+>  9 | import AdminSidebar from '../components/AdminSidebar';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 |
+  11 | // Tipagem dos dados
+  12 | interface Service {
+
+
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/admin/page.tsx [Client Component Browser]
+    ./frontend/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/admin/page.tsx [Client Component SSR]
+    ./frontend/app/admin/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[24:42:41.811] Browser ERROR   ./frontend/app/admin/page.tsx:9:1
+Module not found: Can't resolve '../components/AdminSidebar'
+   7 | // Importando verificação de login como admin
+   8 | import { useRouter } from 'next/navigation';
+>  9 | import AdminSidebar from '../components/AdminSidebar';
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 |
+  11 | // Tipagem dos dados
+  12 | interface Service {
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/admin/page.tsx [Client Component Browser]
+    ./frontend/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/admin/page.tsx [Client Component SSR]
+    ./frontend/app/admin/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[24:43:33.468] Server  LOG      ✓ Compiled in 40ms
+[24:43:40.319] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[24:43:40.319] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[24:43:48.308] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[24:44:06.864] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[24:44:06.864] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[24:44:21.750] Server  WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[24:44:21.907] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[24:44:22.067] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[24:44:22.067] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[24:44:26.768] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[24:44:26.768] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[24:48:22.695] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[24:48:22.695] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[24:48:56.988] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[24:48:56.988] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[24:56:25.150] Server  LOG      ✓ Compiled in 36ms
+[24:58:08.677] Server  LOG      ✓ Compiled in 50ms
+[25:01:26.718] Server  LOG      ✓ Compiled in 35ms
+[25:04:06.135] Server  ERROR    ⨯ ./frontend/app/page.tsx:6:1
+Module not found: Can't resolve '../components/HomeContent'
+  4 | import { useRouter } from 'next/navigation';
+  5 | import Link from 'next/link';
+> 6 | import HomeContent from '../components/HomeContent';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | // Interface do Serviço
+  9 | interface Service {
+
+
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/page.tsx [Client Component Browser]
+    ./frontend/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/page.tsx [Client Component SSR]
+    ./frontend/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[25:04:06.137] Server  ERROR    ⨯ ./frontend/app/page.tsx:6:1
+Module not found: Can't resolve '../components/HomeContent'
+  4 | import { useRouter } from 'next/navigation';
+  5 | import Link from 'next/link';
+> 6 | import HomeContent from '../components/HomeContent';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | // Interface do Serviço
+  9 | interface Service {
+
+
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/page.tsx [Client Component Browser]
+    ./frontend/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/page.tsx [Client Component SSR]
+    ./frontend/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[25:04:06.140] Server  ERROR    ⨯ ./frontend/app/page.tsx:6:1
+Module not found: Can't resolve '../components/HomeContent'
+  4 | import { useRouter } from 'next/navigation';
+  5 | import Link from 'next/link';
+> 6 | import HomeContent from '../components/HomeContent';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | // Interface do Serviço
+  9 | interface Service {
+
+
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/page.tsx [Client Component Browser]
+    ./frontend/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/page.tsx [Client Component SSR]
+    ./frontend/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[25:04:06.141] Server  ERROR    ⨯ ./frontend/app/page.tsx:6:1
+Module not found: Can't resolve '../components/HomeContent'
+  4 | import { useRouter } from 'next/navigation';
+  5 | import Link from 'next/link';
+> 6 | import HomeContent from '../components/HomeContent';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | // Interface do Serviço
+  9 | interface Service {
+
+
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/page.tsx [Client Component Browser]
+    ./frontend/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/page.tsx [Client Component SSR]
+    ./frontend/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[25:04:06.145] Server  ERROR    ⨯ ./frontend/app/page.tsx:6:1
+Module not found: Can't resolve '../components/HomeContent'
+  4 | import { useRouter } from 'next/navigation';
+  5 | import Link from 'next/link';
+> 6 | import HomeContent from '../components/HomeContent';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | // Interface do Serviço
+  9 | interface Service {
+
+
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/page.tsx [Client Component Browser]
+    ./frontend/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/page.tsx [Client Component SSR]
+    ./frontend/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[25:04:06.148] Server  ERROR    ⨯ ./frontend/app/page.tsx:6:1
+Module not found: Can't resolve '../components/HomeContent'
+  4 | import { useRouter } from 'next/navigation';
+  5 | import Link from 'next/link';
+> 6 | import HomeContent from '../components/HomeContent';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | // Interface do Serviço
+  9 | interface Service {
+
+
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/page.tsx [Client Component Browser]
+    ./frontend/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/page.tsx [Client Component SSR]
+    ./frontend/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[25:04:06.150] Server  ERROR    ⨯ ./frontend/app/page.tsx:6:1
+Module not found: Can't resolve '../components/HomeContent'
+  4 | import { useRouter } from 'next/navigation';
+  5 | import Link from 'next/link';
+> 6 | import HomeContent from '../components/HomeContent';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | // Interface do Serviço
+  9 | interface Service {
+
+
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/page.tsx [Client Component Browser]
+    ./frontend/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/page.tsx [Client Component SSR]
+    ./frontend/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[25:04:06.152] Server  ERROR    ⨯ ./frontend/app/page.tsx:6:1
+Module not found: Can't resolve '../components/HomeContent'
+  4 | import { useRouter } from 'next/navigation';
+  5 | import Link from 'next/link';
+> 6 | import HomeContent from '../components/HomeContent';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | // Interface do Serviço
+  9 | interface Service {
+
+
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/page.tsx [Client Component Browser]
+    ./frontend/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/page.tsx [Client Component SSR]
+    ./frontend/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[25:04:06.155] Server  ERROR    ⨯ ./frontend/app/page.tsx:6:1
+Module not found: Can't resolve '../components/HomeContent'
+  4 | import { useRouter } from 'next/navigation';
+  5 | import Link from 'next/link';
+> 6 | import HomeContent from '../components/HomeContent';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | // Interface do Serviço
+  9 | interface Service {
+
+
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/page.tsx [Client Component Browser]
+    ./frontend/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/page.tsx [Client Component SSR]
+    ./frontend/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[25:04:06.157] Server  ERROR    ⨯ ./frontend/app/page.tsx:6:1
+Module not found: Can't resolve '../components/HomeContent'
+  4 | import { useRouter } from 'next/navigation';
+  5 | import Link from 'next/link';
+> 6 | import HomeContent from '../components/HomeContent';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | // Interface do Serviço
+  9 | interface Service {
+
+
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/page.tsx [Client Component Browser]
+    ./frontend/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/page.tsx [Client Component SSR]
+    ./frontend/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[25:04:06.159] Server  ERROR    ⨯ ./frontend/app/page.tsx:6:1
+Module not found: Can't resolve '../components/HomeContent'
+  4 | import { useRouter } from 'next/navigation';
+  5 | import Link from 'next/link';
+> 6 | import HomeContent from '../components/HomeContent';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | // Interface do Serviço
+  9 | interface Service {
+
+
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/page.tsx [Client Component Browser]
+    ./frontend/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/page.tsx [Client Component SSR]
+    ./frontend/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[25:04:06.161] Server  ERROR    ⨯ ./frontend/app/page.tsx:6:1
+Module not found: Can't resolve '../components/HomeContent'
+  4 | import { useRouter } from 'next/navigation';
+  5 | import Link from 'next/link';
+> 6 | import HomeContent from '../components/HomeContent';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | // Interface do Serviço
+  9 | interface Service {
+
+
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/page.tsx [Client Component Browser]
+    ./frontend/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/page.tsx [Client Component SSR]
+    ./frontend/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[25:04:06.173] Server  LOG      ✓ Compiled in 39ms
+[25:04:06.812] Browser ERROR   ./frontend/app/page.tsx:6:1
+Module not found: Can't resolve '../components/HomeContent'
+  4 | import { useRouter } from 'next/navigation';
+  5 | import Link from 'next/link';
+> 6 | import HomeContent from '../components/HomeContent';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | // Interface do Serviço
+  9 | interface Service {
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/page.tsx [Client Component Browser]
+    ./frontend/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/page.tsx [Client Component SSR]
+    ./frontend/app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[25:04:44.894] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[25:06:15.788] Server  LOG      ✓ Compiled in 48ms
+[25:08:11.263] Server  LOG      ✓ Compiled in 36ms
+[25:08:17.453] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[25:08:40.572] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[25:08:40.572] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[25:21:39.272] Server  LOG      ✓ Compiled in 34ms
+[25:23:07.073] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[25:23:40.850] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[25:23:45.141] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[25:23:45.141] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[25:24:43.463] Server  LOG      ✓ Compiled in 31ms
+[25:24:55.470] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[25:24:55.470] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[25:25:46.269] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[25:25:46.269] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[25:25:51.327] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[25:25:51.327] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[25:27:40.047] Server  LOG      ✓ Compiled in 39ms
+[25:28:08.044] Server  LOG      ✓ Compiled in 34ms
+[25:28:37.548] Server  LOG      ✓ Compiled in 42ms
+[25:29:13.478] Server  LOG      ✓ Compiled in 38ms
+[25:29:35.047] Server  LOG      ✓ Compiled in 35ms
+[25:29:42.905] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[25:31:55.151] Server  LOG      ✓ Compiled in 50ms
+[25:31:55.804] Browser ERROR   ./frontend/app/dashboard/page.tsx:86:1
+Parsing ecmascript source code failed
+   84 |   );
+   85 | }
+>  86 | return (
+      | ^^^^^^^^
+>  87 |     <div className="min-h-screen bg-gray-50 flex">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  88 |         {/* 1. Menu Lateral */}
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  89 |         <AdminSidebar />
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  90 |
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  91 |         {/* 2. Conteúdo Principal (Com margem na esquerda) */}
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  92 |         <div className="flex-1 ml-64 p-8">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  93 |             {/* Cabeçalho */}
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  94 |             <div className="flex justify-between items-center mb-8">
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  95 |                 <div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  96 |                     <h1 className="text-3xl font-bold text-beleza-900">Painel de Controle</h1>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  97 |                     <p className="text-gray-500">Visão geral do seu negócio este mês.</p>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  98 |                 </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  99 |             </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 100 |
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 101 |              <h1 className="text-3xl font-bold text-beleza-900 mb-6">Visão Geral</h1>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 102 |              {/* ... Grid de Cards ... */}
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 103 |         </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 104 |     </div>
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 105 | );
+      | ^^^
+
+Return statement is not allowed here
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/dashboard/page.tsx [Client Component Browser]
+    ./frontend/app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/dashboard/page.tsx [Client Component SSR]
+    ./frontend/app/dashboard/page.tsx [Server Component]
+[25:32:43.450] Server  LOG      ✓ Compiled in 41ms
+[25:32:43.808] Browser ERROR   ./frontend/app/dashboard/page.tsx:94:3
+Parsing ecmascript source code failed
+  92 |         </div>
+  93 |     </div>
+> 94 | );
+     |   ^
+
+Expected '}', got '<eof>'
+
+Import traces:
+  Client Component Browser:
+    ./frontend/app/dashboard/page.tsx [Client Component Browser]
+    ./frontend/app/dashboard/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./frontend/app/dashboard/page.tsx [Client Component SSR]
+    ./frontend/app/dashboard/page.tsx [Server Component]
+[25:32:51.648] Server  LOG      ✓ Compiled in 38ms
+[25:32:59.268] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[25:33:20.830] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[25:33:20.830] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[25:35:24.051] Server  LOG      ✓ Compiled in 40ms
+[25:35:54.737] Server  LOG      ✓ Compiled in 37ms
+[25:36:00.091] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[25:36:00.091] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[25:36:13.723] Server  LOG      ✓ Compiled in 52ms
+[25:37:39.059] Server  LOG      ✓ Compiled in 38ms
+[25:37:57.193] Server  LOG      ✓ Compiled in 45ms
+[25:38:21.927] Server  LOG      ✓ Compiled in 40ms
+[25:48:32.437] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[25:48:32.437] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[25:49:14.835] Server  LOG      ✓ Compiled in 36ms
+[25:49:42.617] Server  LOG      ✓ Compiled in 35ms
+[25:50:08.658] Server  LOG      ✓ Compiled in 34ms
+[25:50:40.444] Server  LOG      ✓ Compiled in 32ms
+[25:50:43.934] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[25:50:43.934] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[25:50:52.816] Server  LOG      ✓ Compiled in 34ms
+[25:50:57.430] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[25:50:57.430] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[25:51:05.953] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[25:51:05.953] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[25:52:06.976] Server  LOG      ✓ Compiled in 38ms
+[25:52:18.126] Server  LOG      ✓ Compiled in 43ms
+[25:52:42.562] Server  LOG      ✓ Compiled in 32ms
+[25:52:57.004] Server  LOG      ✓ Compiled in 40ms
+[25:53:00.343] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[25:53:00.343] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[26:49:11.304] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[26:50:45.156] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[26:51:36.216] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[26:51:59.072] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[26:51:59.072] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[26:53:25.385] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
