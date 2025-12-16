@@ -1005,6 +1005,16 @@ img, video {
   background-color: rgb(243 232 255 / var(--tw-bg-opacity, 1));
 }
 
+.bg-blue-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(37 99 235 / var(--tw-bg-opacity, 1));
+}
+
+.bg-gray-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(229 231 235 / var(--tw-bg-opacity, 1));
+}
+
 .bg-\[url\(\'https\:\/\/images\.unsplash\.com\/photo-1627918491244-6a0664273200\?q\=80\&w\=2000\'\)\] {
   background-image: url("https://images.unsplash.com/photo-1627918491244-6a0664273200?q=80&w=2000");
 }
@@ -1397,6 +1407,11 @@ img, video {
   color: rgb(88 28 135 / var(--tw-text-opacity, 1));
 }
 
+.text-blue-400 {
+  --tw-text-opacity: 1;
+  color: rgb(96 165 250 / var(--tw-text-opacity, 1));
+}
+
 .underline {
   text-decoration-line: underline;
 }
@@ -1568,6 +1583,21 @@ img, video {
   background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1));
 }
 
+.hover\:bg-blue-50:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(239 246 255 / var(--tw-bg-opacity, 1));
+}
+
+.hover\:bg-blue-700:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(29 78 216 / var(--tw-bg-opacity, 1));
+}
+
+.hover\:bg-gray-300:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(209 213 219 / var(--tw-bg-opacity, 1));
+}
+
 .hover\:text-beleza-300:hover {
   --tw-text-opacity: 1;
   color: rgb(193 124 96 / var(--tw-text-opacity, 1));
@@ -1596,6 +1626,11 @@ img, video {
 .hover\:text-red-700:hover {
   --tw-text-opacity: 1;
   color: rgb(185 28 28 / var(--tw-text-opacity, 1));
+}
+
+.hover\:text-blue-600:hover {
+  --tw-text-opacity: 1;
+  color: rgb(37 99 235 / var(--tw-text-opacity, 1));
 }
 
 .hover\:underline:hover {

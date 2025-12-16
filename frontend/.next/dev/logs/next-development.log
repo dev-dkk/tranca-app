@@ -286,3 +286,46 @@ https://nextjs.org/docs/messages/module-not-found
 [22:57:45.335] Server  LOG      ✓ Compiled in 74ms
 [22:59:09.303] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
 [22:59:45.139] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[23:10:56.056] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[23:11:17.308] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[23:11:17.308] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[23:18:45.746] Server  LOG      ✓ Compiled in 64ms
+[23:18:46.804] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[23:18:46.804] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[23:19:09.323] Server  LOG      ✓ Compiled in 56ms
+[23:21:57.650] Server  LOG      ✓ Compiled in 52ms
+[23:21:58.805] Browser ERROR   uncaughtError: ReferenceError: isEditing is not defined
+[23:24:42.136] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[23:24:42.525] Server  ERROR   C:\Users\santo\OneDrive\Área de Trabalho\Afrobraids Software\Aplicação\sistema-trancas\frontend\.next\dev\server\chunks\ssr\[root-of-the-server]__4f6d2f84._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[23:24:42.527] Server  ERROR    ⨯ ReferenceError: isEditing is not defined
+[23:24:42.561] Server  LOG      ✓ Compiled in 83ms
+[23:24:42.954] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[23:24:43.809] Browser ERROR   uncaughtError: ReferenceError: isEditing is not defined
+[23:26:35.044] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[23:26:35.458] Server  WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[23:26:35.474] Server  LOG      ✓ Compiled in 57ms
+[23:26:35.665] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[23:26:36.803] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[23:26:36.803] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[23:27:25.038] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold

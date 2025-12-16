@@ -31,7 +31,11 @@ export default function AdminPage() {
     description: ''
   });
 
-  // Carregar dados ao abrir a página
+  // Carregar dados ao abrir a páginaconst [isEditing, setIsEditing] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editingId, setEditingId] = useState<string | null>(null);
+  const [currentImageUrl, setCurrentImageUrl] = useState(""); // Guarda a URL da imagem atual caso não troque
+
   useEffect(() => {
     fetchServices();
   }, []);
@@ -68,61 +72,66 @@ export default function AdminPage() {
     }
   }
 
-  // Função para Salvar (Upload + Banco)
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    setUploading(true); // Bloqueia o botão e mostra "Enviando..."
+    async function handleSubmit(e: React.FormEvent) {
+        e.preventDefault();
+        setUploading(true);
 
-    let finalImageUrl = "";
+        // Começa com a imagem atual (se estiver editando) ou vazia
+        let finalImageUrl = currentImageUrl; 
 
-    try {
-        // 1. Se o usuário selecionou uma foto, faz o upload primeiro
-        if (imageFile) {
-            const uploadFormData = new FormData();
-            uploadFormData.append('image', imageFile);
+        try {
+            // 1. Se o usuário selecionou uma NOVA foto, faz upload
+            if (imageFile) {
+                const uploadFormData = new FormData();
+                uploadFormData.append('image', imageFile);
 
-            const uploadRes = await fetch('http://localhost:3001/upload', {
-                method: 'POST',
-                body: uploadFormData
+                const uploadRes = await fetch('http://localhost:3001/upload', {
+                    method: 'POST',
+                    body: uploadFormData
+                });
+
+                if (!uploadRes.ok) throw new Error('Falha no upload da imagem');
+
+                const uploadData = await uploadRes.json();
+                finalImageUrl = uploadData.url; // Substitui a URL pela nova
+            }
+
+            // 2. Define se é POST (Criar) ou PUT (Editar)
+            const url = isEditing 
+                ? `http://localhost:3001/services/${editingId}`
+                : 'http://localhost:3001/services';
+            
+            const method = isEditing ? 'PUT' : 'POST';
+
+            // 3. Envia para o banco
+            const response = await fetch(url, {
+                method: method,
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    ...formData,
+                    image_url: finalImageUrl // Manda a URL (nova ou antiga)
+                }),
             });
 
-            if (!uploadRes.ok) throw new Error('Falha no upload da imagem');
+            if (!response.ok) throw new Error('Erro ao salvar no banco');
+            
+            // 4. Limpeza e Sucesso
+            handleCancelEdit(); // Usa a função de resetar tudo
+            
+            // Reset manual do input file
+            const fileInput = document.getElementById('fileInput') as HTMLInputElement;
+            if(fileInput) fileInput.value = "";
 
-            const uploadData = await uploadRes.json();
-            finalImageUrl = uploadData.url; // Pega o link do Cloudinary
+            fetchServices();
+            alert(isEditing ? 'Serviço atualizado!' : 'Serviço cadastrado!');
+
+        } catch (error) {
+            console.error(error);
+            alert('Ocorreu um erro ao salvar.');
+        } finally {
+            setUploading(false);
         }
-
-        // 2. Salva os dados do serviço no banco (com o link da imagem)
-        const response = await fetch('http://localhost:3001/services', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                ...formData,
-                image_url: finalImageUrl
-            }),
-        });
-
-        if (!response.ok) throw new Error('Erro ao salvar no banco');
-        
-        // 3. Limpeza e Sucesso
-        setFormData({ name: '', price: '', duration_minutes: '', description: '' });
-        setImageFile(null); // Limpa o input de arquivo
-        
-        // Reset manual do input file (truque do HTML)
-        const fileInput = document.getElementById('fileInput') as HTMLInputElement;
-        if(fileInput) fileInput.value = "";
-
-        fetchServices(); // Atualiza a lista
-        alert('Serviço cadastrado com sucesso!');
-
-    } catch (error) {
-        console.error(error);
-        alert('Ocorreu um erro ao salvar. Verifique o console.');
-    } finally {
-        setUploading(false); // Libera o botão
     }
-  }
-
   // Função para deletar
   async function handleDelete(id: string) {
     if(!confirm("Tem certeza que deseja excluir este serviço?")) return;
@@ -132,6 +141,33 @@ export default function AdminPage() {
     } catch (error) {
         alert("Erro ao excluir");
     }
+  }
+  // Preenche o formulário para editar
+  function handleEdit(service: Service) {
+    setIsEditing(true);
+    setEditingId(service.id);
+    setCurrentImageUrl(service.image_url || ""); // Salva a imagem atual
+    
+    setFormData({
+        name: service.name,
+        price: String(service.price), // Converte numero para string pro input
+        duration_minutes: String(service.duration_minutes),
+        description: service.description || ''
+    });
+
+    setImageFile(null); // Reseta o arquivo, pois o usuário pode não querer trocar a foto
+    
+    // Rola para o topo (formulário)
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Cancela a edição
+  function handleCancelEdit() {
+    setIsEditing(false);
+    setEditingId(null);
+    setCurrentImageUrl("");
+    setFormData({ name: '', price: '', duration_minutes: '', description: '' });
+    setImageFile(null);
   }
 
   return (
@@ -199,6 +235,14 @@ export default function AdminPage() {
                         </div>
 
                         {/* Botão Excluir */}
+                        {/* Botão EDITAR (Novo) */}
+                            <button 
+                                onClick={() => handleEdit(service)}
+                                className="text-blue-400 hover:text-blue-600 p-2 hover:bg-blue-50 rounded transition"
+                                title="Editar serviço"
+                            >
+                                ✏️
+                            </button>
                         <button 
                             onClick={() => handleDelete(service.id)}
                             className="text-red-400 hover:text-red-600 p-2 hover:bg-red-50 rounded transition"
@@ -216,7 +260,9 @@ export default function AdminPage() {
         {/* === COLUNA DA DIREITA: Formulário === */}
         <div>
             <div className="bg-white p-8 rounded-xl shadow-lg border-t-4 border-amber-600 sticky top-8">
-            <h2 className="text-2xl font-bold mb-6 text-gray-800 border-b pb-2">Novo Serviço</h2>
+            <h2 className="text-2xl font-bold mb-6 text-gray-800 border-b pb-2">
+                {isEditing ? `Editando: ${formData.name}` : 'Novo Serviço'}
+            </h2>
             
             <form onSubmit={handleSubmit} className="space-y-5">
                 
@@ -294,16 +340,29 @@ export default function AdminPage() {
                     />
                 </div>
 
-                {/* Botão de Salvar */}
-                <button 
-                    type="submit" 
-                    disabled={uploading}
-                    className={`w-full p-4 rounded-lg font-bold text-lg text-white transition shadow-lg 
-                        ${uploading ? 'bg-gray-400 cursor-not-allowed' : 'bg-amber-700 hover:bg-amber-800 hover:-translate-y-1 hover:shadow-xl'}
-                    `}
-                >
-                    {uploading ? 'Enviando imagem...' : '+ Adicionar ao Catálogo'}
-                </button>
+                <div className="flex gap-2">
+                    <button 
+                        type="submit" 
+                        disabled={uploading}
+                        className={`flex-1 p-4 rounded-lg font-bold text-lg text-white transition shadow-lg 
+                            ${uploading ? 'bg-gray-400 cursor-not-allowed' : 
+                              isEditing ? 'bg-blue-600 hover:bg-blue-700' : 'bg-amber-700 hover:bg-amber-800'}
+                        `}
+                    >
+                        {uploading ? 'Processando...' : isEditing ? 'Salvar Alterações' : '+ Adicionar ao Catálogo'}
+                    </button>
+
+                    {/* Botão Cancelar (Só aparece editando) */}
+                    {isEditing && (
+                        <button 
+                            type="button" 
+                            onClick={handleCancelEdit}
+                            className="px-6 py-4 bg-gray-200 text-gray-700 font-bold rounded-lg hover:bg-gray-300 transition"
+                        >
+                            Cancelar
+                        </button>
+                    )}
+                </div>
             </form>
             </div>
         </div>

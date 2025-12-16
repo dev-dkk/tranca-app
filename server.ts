@@ -185,7 +185,29 @@ app.delete('/services/:id', async (req, res) => {
     await prisma.services.delete({ where: { id } });
     res.json({ message: "Deletado" });
 });
-
+// Adicione isso no seu server.ts
+app.put('/services/:id', async (req, res) => {
+    const { id } = req.params;
+    const { name, description, price, duration_minutes, image_url } = req.body;
+    
+    try {
+        const updatedService = await prisma.services.update({
+            where: { id },
+            data: {
+                name, 
+                description, 
+                price: parseFloat(price), 
+                duration_minutes: parseInt(duration_minutes), 
+                // Se vier uma URL nova, usa ela. Se não, o frontend deve mandar a antiga ou tratamos aqui.
+                // Abaixo, assumimos que o frontend manda a string correta.
+                image_url: image_url 
+            }
+        });
+        res.json(updatedService);
+    } catch (error) {
+        res.status(500).json({ error: "Erro ao atualizar serviço" });
+    }
+});
 // ==========================================
 // --- PERFIL DO USUÁRIO ---
 // ==========================================
