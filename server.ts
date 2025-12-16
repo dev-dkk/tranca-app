@@ -477,6 +477,67 @@ app.get('/dashboard/metrics', async (req, res) => {
     }
 });
 
+// ==========================================
+// --- CANCELAMENTO ---
+// ==========================================
+app.patch('/appointments/:id/cancel', async (req, res) => {
+    const { id } = req.params;
+    const { userId, role } = req.body; // Quem está pedindo o cancelamento
+
+    try {
+        const app = await prisma.appointments.findUnique({
+            where: { id },
+            include: { users: true, services: true }
+        });
+
+        if (!app) return res.status(404).json({ error: "Agendamento não encontrado" });
+
+        // Segurança: Só o dono do agendamento ou o Admin podem cancelar
+        if (role !== 'ADMIN' && app.user_id !== userId) {
+            return res.status(403).json({ error: "Sem permissão." });
+        }
+
+        // Verifica se já passou da data (opcional, mas bom evitar cancelar coisa velha)
+        if (new Date(app.start_time) < new Date()) {
+            return res.status(400).json({ error: "Não é possível cancelar agendamentos passados." });
+        }
+
+        // Atualiza para CANCELADO
+        const updated = await prisma.appointments.update({
+            where: { id },
+            data: { status: 'CANCELED' }
+        });
+
+        // --- ENVIA E-MAIL DE AVISO ---
+        const dataFormatada = format(new Date(app.start_time), "dd 'de' MMMM 'às' HH:mm", { locale: ptBR });
+        
+        // Email para o Cliente
+        transporter.sendMail({
+            from: '"Belezafro" <dknj27@gmail.com>',
+            to: app.users.email,
+            subject: '🚫 Agendamento Cancelado',
+            html: `<p>Olá, ${app.users.name}. O agendamento de <strong>${app.services.name}</strong> para ${dataFormatada} foi cancelado.</p>`
+        }).catch(err => console.error(err));
+
+        // Email para o Admin (se foi o cliente que cancelou)
+        if (role !== 'ADMIN') {
+            transporter.sendMail({
+                from: '"Sistema" <dkntj27@gmail.com>',
+                to: 'dkntj27@gmail.com',
+                subject: '⚠️ Um cliente cancelou!',
+                html: `<p>O cliente <strong>${app.users.name}</strong> cancelou o horário de ${dataFormatada}. O horário está livre novamente.</p>`
+            }).catch(err => console.error(err));
+        }
+        // -----------------------------
+
+        res.json({ message: "Agendamento cancelado com sucesso!", app: updated });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Erro ao cancelar." });
+    }
+});
+
 const PORT = 3001;
 app.listen(PORT, () => {
     console.log(`🚀 Servidor rodando em http://localhost:${PORT}`);

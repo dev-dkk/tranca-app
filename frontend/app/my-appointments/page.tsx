@@ -25,7 +25,32 @@ export default function MyAppointments() {
         })
         .finally(() => setLoading(false));
   }, [router]);
+async function handleCancel(appointmentId: string) {
+    if (!confirm("Tem certeza que deseja cancelar este agendamento?")) return;
 
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+
+    try {
+        const res = await fetch(`http://localhost:3001/appointments/${appointmentId}/cancel`, {
+            method: 'PATCH', // Usamos PATCH para atualização parcial
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ userId: user.id, role: user.role })
+        });
+
+        if (res.ok) {
+            alert("Agendamento cancelado.");
+            // Recarrega a lista removendo ou atualizando o item
+            setAppointments((prev) => 
+                prev.map(app => app.id === appointmentId ? { ...app, status: 'CANCELED' } : app)
+            );
+        } else {
+            const data = await res.json();
+            alert(data.error || "Erro ao cancelar.");
+        }
+    } catch (error) {
+        alert("Erro de conexão.");
+    }
+  }
   if (loading) return <div className="p-8 text-center text-beleza-500">Carregando seus horários...</div>;
 
   return (
@@ -59,6 +84,15 @@ export default function MyAppointments() {
                                     {app.status === 'CONFIRMED' ? 'Confirmado' : app.status}
                                 </span>
                                 <p className="text-lg font-bold text-beleza-600 mt-2">R$ {Number(app.services?.price).toFixed(2)}</p>
+                                {/* BOTÃO DE CANCELAR (Só aparece se não estiver cancelado) */}
+                                {app.status !== 'CANCELED' && (
+                                    <button 
+                                        onClick={() => handleCancel(app.id)}
+                                        className="text-xs text-red-500 hover:text-red-700 underline font-medium mt-1"
+                                    >
+                                        Cancelar Agendamento
+                                    </button>
+                                )}
                             </div>
                         </div>
                     ))}

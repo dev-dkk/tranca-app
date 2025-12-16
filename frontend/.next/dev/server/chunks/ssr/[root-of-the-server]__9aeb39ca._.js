@@ -58,12 +58,41 @@ function MyAppointments() {
     }, [
         router
     ]);
+    async function handleCancel(appointmentId) {
+        if (!confirm("Tem certeza que deseja cancelar este agendamento?")) return;
+        const user = JSON.parse(localStorage.getItem('user') || '{}');
+        try {
+            const res = await fetch(`http://localhost:3001/appointments/${appointmentId}/cancel`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    userId: user.id,
+                    role: user.role
+                })
+            });
+            if (res.ok) {
+                alert("Agendamento cancelado.");
+                // Recarrega a lista removendo ou atualizando o item
+                setAppointments((prev)=>prev.map((app)=>app.id === appointmentId ? {
+                            ...app,
+                            status: 'CANCELED'
+                        } : app));
+            } else {
+                const data = await res.json();
+                alert(data.error || "Erro ao cancelar.");
+            }
+        } catch (error) {
+            alert("Erro de conexão.");
+        }
+    }
     if (loading) return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "p-8 text-center text-beleza-500",
         children: "Carregando seus horários..."
     }, void 0, false, {
         fileName: "[project]/frontend/app/my-appointments/page.tsx",
-        lineNumber: 29,
+        lineNumber: 54,
         columnNumber: 23
     }, this);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -79,7 +108,7 @@ function MyAppointments() {
                             children: "💇‍♀️ Meus Agendamentos"
                         }, void 0, false, {
                             fileName: "[project]/frontend/app/my-appointments/page.tsx",
-                            lineNumber: 35,
+                            lineNumber: 60,
                             columnNumber: 17
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -88,13 +117,13 @@ function MyAppointments() {
                             children: "Voltar"
                         }, void 0, false, {
                             fileName: "[project]/frontend/app/my-appointments/page.tsx",
-                            lineNumber: 36,
+                            lineNumber: 61,
                             columnNumber: 17
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/frontend/app/my-appointments/page.tsx",
-                    lineNumber: 34,
+                    lineNumber: 59,
                     columnNumber: 13
                 }, this),
                 appointments.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -105,7 +134,7 @@ function MyAppointments() {
                             children: "Você ainda não tem agendamentos."
                         }, void 0, false, {
                             fileName: "[project]/frontend/app/my-appointments/page.tsx",
-                            lineNumber: 41,
+                            lineNumber: 66,
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -114,13 +143,13 @@ function MyAppointments() {
                             children: "Agendar Agora"
                         }, void 0, false, {
                             fileName: "[project]/frontend/app/my-appointments/page.tsx",
-                            lineNumber: 42,
+                            lineNumber: 67,
                             columnNumber: 21
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/frontend/app/my-appointments/page.tsx",
-                    lineNumber: 40,
+                    lineNumber: 65,
                     columnNumber: 17
                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     className: "grid gap-4",
@@ -134,7 +163,7 @@ function MyAppointments() {
                                             children: app.services?.name
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/app/my-appointments/page.tsx",
-                                            lineNumber: 49,
+                                            lineNumber: 74,
                                             columnNumber: 33
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -144,13 +173,13 @@ function MyAppointments() {
                                             })
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/app/my-appointments/page.tsx",
-                                            lineNumber: 50,
+                                            lineNumber: 75,
                                             columnNumber: 33
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend/app/my-appointments/page.tsx",
-                                    lineNumber: 48,
+                                    lineNumber: 73,
                                     columnNumber: 29
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -161,7 +190,7 @@ function MyAppointments() {
                                             children: app.status === 'CONFIRMED' ? 'Confirmado' : app.status
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/app/my-appointments/page.tsx",
-                                            lineNumber: 55,
+                                            lineNumber: 80,
                                             columnNumber: 33
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -172,35 +201,44 @@ function MyAppointments() {
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/frontend/app/my-appointments/page.tsx",
-                                            lineNumber: 61,
+                                            lineNumber: 86,
                                             columnNumber: 33
+                                        }, this),
+                                        app.status !== 'CANCELED' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                            onClick: ()=>handleCancel(app.id),
+                                            className: "text-xs text-red-500 hover:text-red-700 underline font-medium mt-1",
+                                            children: "Cancelar Agendamento"
+                                        }, void 0, false, {
+                                            fileName: "[project]/frontend/app/my-appointments/page.tsx",
+                                            lineNumber: 89,
+                                            columnNumber: 37
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend/app/my-appointments/page.tsx",
-                                    lineNumber: 54,
+                                    lineNumber: 79,
                                     columnNumber: 29
                                 }, this)
                             ]
                         }, app.id, true, {
                             fileName: "[project]/frontend/app/my-appointments/page.tsx",
-                            lineNumber: 47,
+                            lineNumber: 72,
                             columnNumber: 25
                         }, this))
                 }, void 0, false, {
                     fileName: "[project]/frontend/app/my-appointments/page.tsx",
-                    lineNumber: 45,
+                    lineNumber: 70,
                     columnNumber: 17
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/frontend/app/my-appointments/page.tsx",
-            lineNumber: 33,
+            lineNumber: 58,
             columnNumber: 9
         }, this)
     }, void 0, false, {
         fileName: "[project]/frontend/app/my-appointments/page.tsx",
-        lineNumber: 32,
+        lineNumber: 57,
         columnNumber: 5
     }, this);
 }
