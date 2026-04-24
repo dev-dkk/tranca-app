@@ -18,7 +18,7 @@ export default function MyAppointments() {
     }
     const user = JSON.parse(userStored);
 
-    fetch(`http://localhost:3001/appointments/my/${user.id}`)
+    fetch(`https://tranca-app.onrender.com/appointments/my/${user.id}`)
         .then(res => res.json())
         .then(data => {
             if (Array.isArray(data)) setAppointments(data);
@@ -31,7 +31,7 @@ async function handleCancel(appointmentId: string) {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
 
     try {
-        const res = await fetch(`http://localhost:3001/appointments/${appointmentId}/cancel`, {
+        const res = await fetch(`https://tranca-app.onrender.com/appointments/${appointmentId}/cancel`, {
             method: 'PATCH', // Usamos PATCH para atualização parcial
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ userId: user.id, role: user.role })

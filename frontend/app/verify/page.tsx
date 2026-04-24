@@ -18,7 +18,7 @@ function VerifyContent() {
     }
 
     // Chama o backend para validar o token
-    fetch('http://localhost:3001/auth/verify-email', {
+    fetch('https://tranca-app.onrender.com/auth/verify-email', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ token })

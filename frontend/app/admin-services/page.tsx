@@ -59,7 +59,7 @@ export default function AdminPage() {
   // Função para buscar serviços do Backend
   async function fetchServices() {
     try {
-        const res = await fetch('http://localhost:3001/services');
+        const res = await fetch('https://tranca-app.onrender.com/services');
         const data = await res.json();
         
         // Garante que preço seja número para o gráfico não quebrar
@@ -86,7 +86,7 @@ export default function AdminPage() {
                 const uploadFormData = new FormData();
                 uploadFormData.append('image', imageFile);
 
-                const uploadRes = await fetch('http://localhost:3001/upload', {
+                const uploadRes = await fetch('https://tranca-app.onrender.com/upload', {
                     method: 'POST',
                     body: uploadFormData
                 });
@@ -99,8 +99,8 @@ export default function AdminPage() {
 
             // 2. Define se é POST (Criar) ou PUT (Editar)
             const url = isEditing 
-                ? `http://localhost:3001/services/${editingId}`
-                : 'http://localhost:3001/services';
+                ? `https://tranca-app.onrender.com/services/${editingId}`
+                : 'https://tranca-app.onrender.com/services';
             
             const method = isEditing ? 'PUT' : 'POST';
 
@@ -137,7 +137,7 @@ export default function AdminPage() {
   async function handleDelete(id: string) {
     if(!confirm("Tem certeza que deseja excluir este serviço?")) return;
     try {
-        await fetch(`http://localhost:3001/services/${id}`, { method: 'DELETE' });
+        await fetch(`https://tranca-app.onrender.com/services/${id}`, { method: 'DELETE' });
         fetchServices();
     } catch (error) {
         alert("Erro ao excluir");

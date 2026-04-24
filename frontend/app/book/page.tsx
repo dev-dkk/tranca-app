@@ -34,7 +34,7 @@ function BookingContent() {
 
     // 2. Busca Serviço
     if (serviceId) {
-        fetch('http://localhost:3001/services').then(res => res.json()).then(data => {
+        fetch('https://tranca-app.onrender.com/services').then(res => res.json()).then(data => {
             const found = data.find((s: any) => s.id === serviceId);
             setService(found);
         });
@@ -46,7 +46,7 @@ function BookingContent() {
     // Só busca se tiver uma data selecionada
     if (!selectedDate) return;
 
-    fetch(`http://localhost:3001/appointments/availability?date=${selectedDate.toISOString()}`)
+    fetch(`https://tranca-app.onrender.com/appointments/availability?date=${selectedDate.toISOString()}`)
         .then(res => res.json())
         .then((data) => {
             // VERIFICAÇÃO DE SEGURANÇA:
@@ -75,7 +75,7 @@ function BookingContent() {
     const finalDate = setMinutes(setHours(selectedDate, hora), minuto);
 
     try {
-        const res = await fetch('http://localhost:3001/appointments', {
+        const res = await fetch('https://tranca-app.onrender.com/appointments', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

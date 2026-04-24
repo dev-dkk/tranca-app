@@ -17,7 +17,7 @@ export default function DashboardPage() {
     if (user.role !== 'ADMIN') { router.push('/'); return; }
 
     // 2. Busca os dados
-    fetch('http://localhost:3001/dashboard/metrics')
+    fetch('https://tranca-app.onrender.com/dashboard/metrics')
         .then(res => res.json())
         .then(data => setMetrics(data))
         .finally(() => setLoading(false));
