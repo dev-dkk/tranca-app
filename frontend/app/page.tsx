@@ -56,12 +56,12 @@ export default function Home() {
     router.refresh();
   };
 
-  // Função do WhatsApp
+  {/*  Função do WhatsApp Botão, futuramente implementar um botçao flutuante que direciona para o whatsapp
   const irParaAgendamento = (servico: Service) => {
       // Se não tiver logado, o próprio /book vai chutar pro login, mas podemos verificar aqui também
       router.push(`/book?serviceId=${servico.id}`);
     };
-
+    */}
   return (
     <div className="min-h-screen bg-beleza-50 font-sans text-beleza-900">
       
