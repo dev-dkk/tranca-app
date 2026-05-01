@@ -27,7 +27,7 @@ function Home() {
             // 1. Busca os serviços do Backend
             async function fetchServices() {
                 try {
-                    const res = await fetch('http://localhost:3001/services');
+                    const res = await fetch('https://tranca-app.onrender.com/services');
                     const data = await res.json();
                     setServices(data);
                 } catch (error) {
@@ -382,7 +382,7 @@ function Home() {
             // 1. Busca os serviços do Backend
             async function fetchServices() {
                 try {
-                    const res = await fetch('http://localhost:3001/services');
+                    const res = await fetch('https://tranca-app.onrender.com/services');
                     const data = await res.json();
                     setServices(data);
                 } catch (error) {

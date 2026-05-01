@@ -79,7 +79,7 @@ app.post('/auth/register', async (req, res) => {
         });
 
         // Envia o E-mail
-        const link = `http://localhost:3000/verify?token=${verificationToken}`;
+        const link = `https://tranca-app.onrender.com/verify?token=${verificationToken}`;
         
         await transporter.sendMail({
             from: '"Belezafro Sistema" <seu.email@gmail.com>',
@@ -348,7 +348,7 @@ app.post('/appointments', async (req, res) => {
         
         // E-mail 1: Para o CLIENTE
         const mailOptionsClient = {
-            from: '"Belezafro Agenda" <seu.email.real@gmail.com>', // Seu email aqui
+            from: '"Belezafro Agenda" <dkntj27@gmail.com>', // Seu email aqui
             to: user.email, // Email do cliente
             subject: '✅ Agendamento Confirmado! - Belezafro',
             html: `
@@ -378,7 +378,7 @@ app.post('/appointments', async (req, res) => {
                     <p><strong>Serviço:</strong> ${service.name}</p>
                     <p><strong>Quando:</strong> ${dataFormatada}</p>
                     <br/>
-                    <a href="http://localhost:3000/admin" style="background: #333; color: #fff; padding: 10px; text-decoration: none;">Ver no Painel</a>
+                    <a href="https://tranca-app.onrender.com/admin" style="background: #333; color: #fff; padding: 10px; text-decoration: none;">Ver no Painel</a>
                 </div>
             `
         };
@@ -562,5 +562,5 @@ app.patch('/appointments/:id/cancel', async (req, res) => {
 
 const PORT = 3001;
 app.listen(PORT, () => {
-    console.log(`🚀 Servidor rodando em http://localhost:${PORT}`);
+    console.log(`🚀 Servidor rodando em https://tranca-app.onrender.com`);
 });
