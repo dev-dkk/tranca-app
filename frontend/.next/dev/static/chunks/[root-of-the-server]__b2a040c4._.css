@@ -1663,6 +1663,11 @@ img, video {
   background-color: rgb(185 28 28 / var(--tw-bg-opacity, 1));
 }
 
+.hover\:bg-beleza-500:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(169 92 66 / var(--tw-bg-opacity, 1));
+}
+
 .hover\:text-beleza-300:hover {
   --tw-text-opacity: 1;
   color: rgb(193 124 96 / var(--tw-text-opacity, 1));

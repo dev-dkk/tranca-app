@@ -138,7 +138,7 @@ export default function Home() {
               </div>
             ) : (
               // === SE NÃO ESTIVER LOGADO ===
-              <a href="/login" className="text-sm font-bold text-beleza-500 hover:text-beleza-300 transition border border-beleza-200 px-4 py-2 rounded-full hover:bg-beleza-50">
+              <a href="/login" className="text-sm font-bold text-white bg-beleza-500 border border-beleza-200 px-4 py-2 rounded-full">
                 Entrar / Cadastrar
               </a>
             )}

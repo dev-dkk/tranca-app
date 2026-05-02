@@ -102,7 +102,7 @@ function RegisterPage() {
         setLoading(true);
         try {
             // 2. Envia para o Backend (removendo a confirmPassword)
-            const res = await fetch('http://localhost:3001/auth/register', {
+            const res = await fetch('https://tranca-app.onrender.com/auth/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
