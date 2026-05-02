@@ -9,9 +9,9 @@ __turbopack_context__.s([
 var __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/frontend/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/frontend/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/frontend/node_modules/next/navigation.js [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$calendar$2f$dist$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/node_modules/react-calendar/dist/index.js [app-client] (ecmascript) <locals>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$date$2d$fns$2f$setHours$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/date-fns/setHours.js [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$date$2d$fns$2f$setMinutes$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/date-fns/setMinutes.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$react$2d$calendar$2f$dist$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/frontend/node_modules/react-calendar/dist/index.js [app-client] (ecmascript) <locals>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$date$2d$fns$2f$setHours$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/frontend/node_modules/date-fns/setHours.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$date$2d$fns$2f$setMinutes$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/frontend/node_modules/date-fns/setMinutes.js [app-client] (ecmascript)");
 ;
 var _s = __turbopack_context__.k.signature();
 'use client';
@@ -55,7 +55,7 @@ function BookingContent() {
             setUser(JSON.parse(userStored));
             // 2. Busca Serviço
             if (serviceId) {
-                fetch('http://localhost:3001/services').then({
+                fetch('https://tranca-app.onrender.com/services').then({
                     "BookingContent.useEffect": (res)=>res.json()
                 }["BookingContent.useEffect"]).then({
                     "BookingContent.useEffect": (data)=>{
@@ -76,7 +76,7 @@ function BookingContent() {
         "BookingContent.useEffect": ()=>{
             // Só busca se tiver uma data selecionada
             if (!selectedDate) return;
-            fetch(`http://localhost:3001/appointments/availability?date=${selectedDate.toISOString()}`).then({
+            fetch(`https://tranca-app.onrender.com/appointments/availability?date=${selectedDate.toISOString()}`).then({
                 "BookingContent.useEffect": (res)=>res.json()
             }["BookingContent.useEffect"]).then({
                 "BookingContent.useEffect": (data)=>{
@@ -108,9 +108,9 @@ function BookingContent() {
         setLoading(true);
         // Monta a data final combinando o Dia escolhido + Hora escolhida
         const [hora, minuto] = selectedTime.split(':').map(Number);
-        const finalDate = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$date$2d$fns$2f$setMinutes$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["setMinutes"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$date$2d$fns$2f$setHours$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["setHours"])(selectedDate, hora), minuto);
+        const finalDate = (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$date$2d$fns$2f$setMinutes$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["setMinutes"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$date$2d$fns$2f$setHours$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["setHours"])(selectedDate, hora), minuto);
         try {
-            const res = await fetch('http://localhost:3001/appointments', {
+            const res = await fetch('https://tranca-app.onrender.com/appointments', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -134,7 +134,7 @@ function BookingContent() {
     const isSlotBusy = (time)=>{
         const [h, m] = time.split(':').map(Number);
         // Cria uma data temporária com esse horário
-        const slotDate = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$date$2d$fns$2f$setMinutes$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["setMinutes"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$date$2d$fns$2f$setHours$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["setHours"])(selectedDate, h), m);
+        const slotDate = (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$date$2d$fns$2f$setMinutes$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["setMinutes"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$date$2d$fns$2f$setHours$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["setHours"])(selectedDate, h), m);
         // Verifica se existe algum agendamento no banco com a MESMA hora
         return busySlots.some((busyDate)=>busyDate.getHours() === slotDate.getHours() && busyDate.getMinutes() === slotDate.getMinutes());
     };
@@ -258,7 +258,7 @@ function BookingContent() {
                             lineNumber: 139,
                             columnNumber: 17
                         }, this),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$calendar$2f$dist$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["default"], {
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$react$2d$calendar$2f$dist$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["default"], {
                             onChange: (val)=>{
                                 setSelectedDate(val);
                                 setSelectedTime(null);

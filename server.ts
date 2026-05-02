@@ -384,20 +384,23 @@ app.post('/appointments', async (req, res) => {
     const { userId, serviceId, date } = req.body;
 
     try {
-        // 1. Buscamos Serviço e Usuário (para pegar os nomes e emails)
+        console.log("📅 Criando agendamento...");
+
+        // 1. Buscar dados
         const service = await prisma.services.findUnique({ where: { id: serviceId } });
         const user = await prisma.users.findUnique({ where: { id: userId } });
 
         if (!service || !user) {
+            console.log("❌ Serviço ou usuário não encontrado");
             return res.status(404).json({ error: "Serviço ou Usuário não encontrado." });
         }
 
-        // 2. Cálculos de Tempo
+        // 2. Datas
         const startTime = new Date(date);
         const endTime = new Date(startTime);
         endTime.setMinutes(startTime.getMinutes() + service.duration_minutes);
 
-        // 3. Verifica conflito
+        // 3. Conflito
         const exists = await prisma.appointments.findFirst({
             where: { 
                 start_time: startTime, 
@@ -405,9 +408,12 @@ app.post('/appointments', async (req, res) => {
             }
         });
 
-        if (exists) return res.status(400).json({ error: "Horário indisponível!" });
+        if (exists) {
+            console.log("⚠️ Horário já ocupado");
+            return res.status(400).json({ error: "Horário indisponível!" });
+        }
 
-        // 4. Salva no Banco
+        // 4. Salvar
         const newApp = await prisma.appointments.create({
             data: {
                 user_id: userId,
@@ -418,60 +424,56 @@ app.post('/appointments', async (req, res) => {
             }
         });
 
-        // ==========================================
-        // --- ENVIO DE E-MAILS ---
-        // ==========================================
-        
-        // Formata a data para ler fácil (ex: "Segunda-feira, 20 de Dezembro às 14:00")
+        console.log("✅ Agendamento criado:", newApp.id);
+
+        // 5. Formatar data
         const dataFormatada = format(startTime, "EEEE, d 'de' MMMM 'às' HH:mm", { locale: ptBR });
-        
-        // E-mail 1: Para o CLIENTE
-        const mailOptionsClient = {
-            from: '"Belezafro Agenda" <dkntj27@gmail.com>', // Seu email aqui
-            to: user.email, // Email do cliente
-            subject: '✅ Agendamento Confirmado! - Belezafro',
-            html: `
-                <div style="font-family: Arial, color: #333;">
-                    <h1 style="color: #A35841;">Olá, ${user.name}!</h1>
-                    <p>Seu agendamento foi realizado com sucesso.</p>
-                    <hr/>
-                    <p><strong>Serviço:</strong> ${service.name}</p>
-                    <p><strong>Data:</strong> ${dataFormatada}</p>
-                    <p><strong>Valor:</strong> R$ ${Number(service.price).toFixed(2)}</p>
-                    <p><strong>Duração:</strong> ${service.duration_minutes} min</p>
-                    <hr/>
-                    <p>Te aguardamos no salão! Qualquer dúvida, chame no WhatsApp.</p>
-                </div>
-            `
-        };
-
-        // E-mail 2: Para o ADMIN (Você)
-        const mailOptionsAdmin = {
-            from: '"Sistema Belezafro" <dkntj27@gmail.com>',
-            to: 'dknjt27@gmail.com', // Manda pra você mesmo
-            subject: `📅 Novo Agendamento: ${user.name}`,
-            html: `
-                <div style="font-family: Arial;">
-                    <h2>Novo Cliente Agendado!</h2>
-                    <p><strong>Cliente:</strong> ${user.name} (${user.phone})</p>
-                    <p><strong>Serviço:</strong> ${service.name}</p>
-                    <p><strong>Quando:</strong> ${dataFormatada}</p>
-                    <br/>
-                    <a href="https://tranca-app.onrender.com/admin" style="background: #333; color: #fff; padding: 10px; text-decoration: none;">Ver no Painel</a>
-                </div>
-            `
-        };
-
-        // Envia os e-mails (sem travar a resposta se der erro no email)
-        transporter.sendMail(mailOptionsClient).catch(err => console.error("Erro email cliente:", err));
-        transporter.sendMail(mailOptionsAdmin).catch(err => console.error("Erro email admin:", err));
 
         // ==========================================
+        // 📧 EMAIL CLIENTE
+        // ==========================================
+        resend.emails.send({
+            from: 'Belezafro <no-reply@dev-dk.tech>',
+            to: [user.email], // sempre array
+            subject: '✅ Agendamento Confirmado!',
+            html: `
+                <h1>Olá, ${user.name}!</h1>
+                <p>Seu agendamento foi confirmado:</p>
+                <hr/>
+                <p><strong>Serviço:</strong> ${service.name}</p>
+                <p><strong>Data:</strong> ${dataFormatada}</p>
+                <p><strong>Valor:</strong> R$ ${Number(service.price).toFixed(2)}</p>
+                <p><strong>Duração:</strong> ${service.duration_minutes} min</p>
+                <hr/>
+                <p>Te esperamos! 💇🏾‍♀️</p>
+            `
+        })
+        .then(() => console.log("📧 Email cliente enviado"))
+        .catch(err => console.error("❌ Erro email cliente:", err));
 
+        // ==========================================
+        // 📧 EMAIL ADMIN
+        // ==========================================
+        resend.emails.send({
+            from: 'Belezafro <no-reply@dev-dk.tech>',
+            to: ['dkntj27@gmail.com'], 
+            subject: `📅 Novo agendamento - ${user.name}`,
+            html: `
+                <h2>Novo agendamento!</h2>
+                <p><strong>Cliente:</strong> ${user.name}</p>
+                <p><strong>Telefone:</strong> ${user.phone}</p>
+                <p><strong>Serviço:</strong> ${service.name}</p>
+                <p><strong>Data:</strong> ${dataFormatada}</p>
+            `
+        })
+        .then(() => console.log("📧 Email admin enviado"))
+        .catch(err => console.error("❌ Erro email admin:", err));
+
+        // resposta imediata (não espera email)
         res.json(newApp);
 
     } catch (error) {
-        console.error("ERRO AO CRIAR:", error);
+        console.error("🔥 ERRO GERAL:", error);
         res.status(500).json({ error: "Erro ao agendar." });
     }
 });
