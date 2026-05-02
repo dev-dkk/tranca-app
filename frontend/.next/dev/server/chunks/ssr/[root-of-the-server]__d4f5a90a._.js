@@ -68,7 +68,7 @@ function ProfilePage() {
         // 2. Busca os dados frescos do banco
         async function fetchProfile() {
             try {
-                const res = await fetch(`http://localhost:3001/users/${user.id || user.userId}`); // O backend pode devolver id ou userId
+                const res = await fetch(`https://tranca-app.onrender.com/users/${user.id || user.userId}`); // O backend pode devolver id ou userId
                 const data = await res.json();
                 if (res.ok) {
                     setFormData({
@@ -105,7 +105,7 @@ function ProfilePage() {
             text: ''
         });
         try {
-            const res = await fetch(`http://localhost:3001/users/${formData.id}`, {
+            const res = await fetch(`https://tranca-app.onrender.com/users/${formData.id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
