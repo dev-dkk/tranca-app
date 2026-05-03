@@ -446,7 +446,7 @@ app.post('/appointments', async (req, res) => {
                 description: `Agendamento - ${service.name}`,
                 payment_method_id: 'pix',
                 payer: {
-                    email: user.email
+                    email: "test_user_123456@testuser.com"
                 },
                 notification_url: 'https://tranca-app.onrender.com/webhook/mercadopago',
                 external_reference: appointment.id
