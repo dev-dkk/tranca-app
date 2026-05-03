@@ -438,7 +438,8 @@ app.post('/appointments', async (req, res) => {
         console.log("DEBUG PIX:", {
             metade,
             email: user.email,
-            service: service.name
+            service: service.name,
+            cpf: user.cpf
             });
         const payment = await paymentClient.create({
             body: {
@@ -446,10 +447,16 @@ app.post('/appointments', async (req, res) => {
                 description: `Agendamento - ${service.name}`,
                 payment_method_id: 'pix',
                 payer: {
-                    email: "test_user_123456@testuser.com"
+                    email: user.email,
+                    identification: {
+                        type: "CPF",
+                        number: user.cpf
+                    }
                 },
                 notification_url: 'https://tranca-app.onrender.com/webhook/mercadopago',
-                external_reference: appointment.id
+                external_reference: appointment.id,
+                date_of_expiration: new Date(Date.now() + 30 * 60 * 1000).toISOString()
+
             }
         });
 
