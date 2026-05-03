@@ -91,7 +91,8 @@ const handleBooking = async () => {
     });
 
     const data = await res.json();
-
+    console.log("RESPOSTA BACKEND:", data);
+    
     if (!res.ok) throw new Error("Erro ao agendar");
 
     // AQUI É O PONTO CRÍTICO
