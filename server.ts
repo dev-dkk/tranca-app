@@ -435,6 +435,11 @@ app.post('/appointments', async (req, res) => {
         });
 
         // 💳 cria PIX
+        console.log("DEBUG PIX:", {
+            metade,
+            email: user.email,
+            service: service.name
+            });
         const payment = await paymentClient.create({
             body: {
                 transaction_amount: metade,
