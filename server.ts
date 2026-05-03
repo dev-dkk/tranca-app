@@ -472,7 +472,8 @@ app.post('/appointments', async (req, res) => {
         });
 
         console.log("✅ PIX gerado");
-
+        console.log("RESPOSTA BACKEND QR CODE:", pix?.qr_code);
+        console.log("RESPOSTA BACKENDQR CODE BASE 64:", pix?.qr_code_base64);
         // ✅ RESPOSTA ÚNICA
         return res.json({
             appointment,
@@ -521,7 +522,6 @@ app.post('/appointments/confirm-payment', async (req, res) => {
 app.post('/webhook/mercadopago', async (req, res) => {
     try {
         console.log("🔔 Webhook recebido");
-
         const paymentId = req.body.data?.id;
 
         if (!paymentId) {
