@@ -420,7 +420,7 @@ app.post('/appointments', async (req, res) => {
         const total = Number(service.price);
         const metade = total / 2;
 
-        // 🧾 cria agendamento PENDENTE
+        // 🧾 cria agendamento
         const appointment = await prisma.appointments.create({
             data: {
                 user_id: userId,
@@ -434,43 +434,35 @@ app.post('/appointments', async (req, res) => {
             }
         });
 
-        // 💳 cria PIX
         console.log("DEBUG PIX:", {
             metade,
             email: user.email,
-            first_name: user.name,
             service: service.name,
             cpf: user.cpf
-            });
+        });
+
+        // 💳 cria PIX
         const payment = await paymentClient.create({
-        body: {
-            transaction_amount: Number(metade),
-            description: `Agendamento ${user.name}]- ${service.name}`,
-            payment_method_id: 'pix',
-            payer: {
-            email: user.email,
-            first_name: user.name,
-            identification: {
-                type: 'CPF',
-                number: user.cpf
+            body: {
+                transaction_amount: Number(metade),
+                description: `Agendamento ${user.name} - ${service.name}`,
+                payment_method_id: 'pix',
+                payer: {
+                    email: user.email,
+                    first_name: user.name,
+                    identification: {
+                        type: 'CPF',
+                        number: user.cpf
+                    }
+                },
+                notification_url: 'https://tranca-app.onrender.com/webhook/mercadopago',
+                external_reference: appointment.id
             }
-            },
-            notification_url: 'https://tranca-app.onrender.com/webhook/mercadopago',
-            external_reference: appointment.id
-        }
         });
 
         const pix = payment.point_of_interaction?.transaction_data;
 
-        res.json({
-        appointment,
-        pix: {
-            qr_code: pix?.qr_code,
-            qr_code_base64: pix?.qr_code_base64
-        }
-        });
-
-        // salva dados do pagamento
+        // 💾 salva dados do pagamento
         await prisma.appointments.update({
             where: { id: appointment.id },
             data: {
@@ -481,9 +473,9 @@ app.post('/appointments', async (req, res) => {
 
         console.log("✅ PIX gerado");
 
-        res.json({
-            message: "Pagamento necessário",
-            appointmentId: appointment.id,
+        // ✅ RESPOSTA ÚNICA
+        return res.json({
+            appointment,
             pix: {
                 qr_code: pix?.qr_code,
                 qr_code_base64: pix?.qr_code_base64,
@@ -493,7 +485,7 @@ app.post('/appointments', async (req, res) => {
 
     } catch (error) {
         console.error("❌ ERRO AO CRIAR PIX:", error);
-        res.status(500).json({ error: "Erro ao gerar pagamento" });
+        return res.status(500).json({ error: "Erro ao gerar pagamento" });
     }
 });
 //Rota de confirmação de pagamento
