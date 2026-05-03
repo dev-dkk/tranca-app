@@ -12,6 +12,14 @@ import jwt from 'jsonwebtoken';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import { Resend } from 'resend';
+import { MercadoPagoConfig, Payment } from 'mercadopago';
+
+// Instancie a classe passando o token no construtor
+const mpClient = new MercadoPagoConfig({ 
+  accessToken: process.env.MP_ACCESS_TOKEN as string 
+});
+
+const paymentClient = new Payment(mpClient)
 const app = express();
 const prisma = new PrismaClient();
 
@@ -386,98 +394,159 @@ app.post('/appointments', async (req, res) => {
     try {
         console.log("📅 Criando agendamento...");
 
-        // 1. Buscar dados
         const service = await prisma.services.findUnique({ where: { id: serviceId } });
         const user = await prisma.users.findUnique({ where: { id: userId } });
 
         if (!service || !user) {
-            console.log("❌ Serviço ou usuário não encontrado");
-            return res.status(404).json({ error: "Serviço ou Usuário não encontrado." });
+            return res.status(404).json({ error: "Serviço ou usuário não encontrado." });
         }
 
-        // 2. Datas
         const startTime = new Date(date);
         const endTime = new Date(startTime);
         endTime.setMinutes(startTime.getMinutes() + service.duration_minutes);
 
-        // 3. Conflito
+        // 🔒 verifica conflito
         const exists = await prisma.appointments.findFirst({
             where: { 
-                start_time: startTime, 
-                status: { not: 'CANCELED' } 
+                start_time: startTime,
+                status: { not: 'CANCELED' }
             }
         });
 
         if (exists) {
-            console.log("⚠️ Horário já ocupado");
             return res.status(400).json({ error: "Horário indisponível!" });
         }
 
-        // 4. Salvar
-        const newApp = await prisma.appointments.create({
+        const total = Number(service.price);
+        const metade = total / 2;
+
+        // 🧾 cria agendamento PENDENTE
+        const appointment = await prisma.appointments.create({
             data: {
                 user_id: userId,
                 service_id: serviceId,
                 start_time: startTime,
                 end_time: endTime,
-                status: "CONFIRMED"
+                status: "PENDING",
+                payment_status: "PENDING",
+                amount_total: total,
+                amount_paid: 0
             }
         });
 
-        console.log("✅ Agendamento criado:", newApp.id);
+        // 💳 cria PIX
+        const payment = await paymentClient.create({
+            body: {
+                transaction_amount: metade,
+                description: `Agendamento - ${service.name}`,
+                payment_method_id: 'pix',
+                payer: {
+                    email: user.email
+                },
+                notification_url: 'https://tranca-app.onrender.com/webhook/mercadopago',
+                external_reference: appointment.id
+            }
+        });
 
-        // 5. Formatar data
-        const dataFormatada = format(startTime, "EEEE, d 'de' MMMM 'às' HH:mm", { locale: ptBR });
+        const pix = payment.point_of_interaction?.transaction_data;
 
-        // ==========================================
-        // 📧 EMAIL CLIENTE
-        // ==========================================
-        resend.emails.send({
-            from: 'Belezafro <no-reply@dev-dk.tech>',
-            to: [user.email], // sempre array
-            subject: '✅ Agendamento Confirmado!',
-            html: `
-                <h1>Olá, ${user.name}!</h1>
-                <p>Seu agendamento foi confirmado:</p>
-                <hr/>
-                <p><strong>Serviço:</strong> ${service.name}</p>
-                <p><strong>Data:</strong> ${dataFormatada}</p>
-                <p><strong>Valor:</strong> R$ ${Number(service.price).toFixed(2)}</p>
-                <p><strong>Duração:</strong> ${service.duration_minutes} min</p>
-                <hr/>
-                <p>Te esperamos! 💇🏾‍♀️</p>
-            `
-        })
-        .then(() => console.log("📧 Email cliente enviado"))
-        .catch(err => console.error("❌ Erro email cliente:", err));
+        // salva dados do pagamento
+        await prisma.appointments.update({
+            where: { id: appointment.id },
+            data: {
+                payment_id: payment.id?.toString(),
+                payment_link: pix?.ticket_url
+            }
+        });
 
-        // ==========================================
-        // 📧 EMAIL ADMIN
-        // ==========================================
-        resend.emails.send({
-            from: 'Belezafro <no-reply@dev-dk.tech>',
-            to: ['dkntj27@gmail.com'], 
-            subject: `📅 Novo agendamento - ${user.name}`,
-            html: `
-                <h2>Novo agendamento!</h2>
-                <p><strong>Cliente:</strong> ${user.name}</p>
-                <p><strong>Telefone:</strong> ${user.phone}</p>
-                <p><strong>Serviço:</strong> ${service.name}</p>
-                <p><strong>Data:</strong> ${dataFormatada}</p>
-            `
-        })
-        .then(() => console.log("📧 Email admin enviado"))
-        .catch(err => console.error("❌ Erro email admin:", err));
+        console.log("✅ PIX gerado");
 
-        // resposta imediata (não espera email)
-        res.json(newApp);
+        res.json({
+            message: "Pagamento necessário",
+            appointmentId: appointment.id,
+            pix: {
+                qr_code: pix?.qr_code,
+                qr_code_base64: pix?.qr_code_base64,
+                ticket_url: pix?.ticket_url
+            }
+        });
 
     } catch (error) {
-        console.error("🔥 ERRO GERAL:", error);
-        res.status(500).json({ error: "Erro ao agendar." });
+        console.error("❌ ERRO AO CRIAR PIX:", error);
+        res.status(500).json({ error: "Erro ao gerar pagamento" });
+    }
+});
+//Rota de confirmação de pagamento
+app.post('/appointments/confirm-payment', async (req, res) => {
+    const { appointmentId } = req.body;
+
+    try {
+        const appointment = await prisma.appointments.findUnique({
+            where: { id: appointmentId }
+        });
+
+        if (!appointment) {
+            return res.status(404).json({ error: "Agendamento não encontrado" });
+        }
+
+        await prisma.appointments.update({
+            where: { id: appointmentId },
+            data: {
+                status: "CONFIRMED",
+                payment_status: "PAID",
+                amount_paid: appointment.amount_total / 2
+            }
+        });
+
+        res.json({ message: "Pagamento confirmado e agendamento ativado!" });
+
+    } catch (error) {
+        res.status(500).json({ error: "Erro ao confirmar pagamento" });
     }
 });
 
+// Rota do Webhook do Mercado Pago
+app.post('/webhook/mercadopago', async (req, res) => {
+    try {
+        console.log("🔔 Webhook recebido");
+
+        const paymentId = req.body.data?.id;
+
+        if (!paymentId) {
+            return res.sendStatus(200);
+        }
+
+        const payment = await paymentClient.get({ id: paymentId });
+
+        if (payment.status !== 'approved') {
+            return res.sendStatus(200);
+        }
+
+        const appointmentId = payment.external_reference;
+
+        if (!appointmentId) {
+            console.log("⚠️ Sem external_reference");
+            return res.sendStatus(200);
+        }
+
+        await prisma.appointments.update({
+            where: { id: appointmentId },
+            data: {
+                status: "CONFIRMED",
+                payment_status: "PAID",
+                amount_paid: payment.transaction_amount
+            }
+        });
+
+        console.log("✅ PAGAMENTO CONFIRMADO:", appointmentId);
+
+        res.sendStatus(200);
+
+    } catch (error) {
+        console.error("❌ ERRO WEBHOOK:", error);
+        res.sendStatus(500);
+    }
+});
 // ==========================================
 // --- LISTAGEM DE AGENDAMENTOS ---
 // ==========================================

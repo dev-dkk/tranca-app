@@ -13,16 +13,25 @@ datasource db {
 }
 
 model appointments {
-  id         String              @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
-  user_id    String              @db.Uuid
-  service_id String              @db.Uuid
-  start_time DateTime            @db.Timestamptz(6)
-  end_time   DateTime            @db.Timestamptz(6)
-  status     appointment_status? @default(PENDING)
-  notes      String?
-  created_at DateTime?           @default(now()) @db.Timestamptz(6)
-  services   services            @relation(fields: [service_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  users      users               @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  id              String              @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  user_id         String              @db.Uuid
+  service_id      String              @db.Uuid
+  start_time      DateTime            @db.Timestamptz(6)
+  end_time        DateTime            @db.Timestamptz(6)
+  status          appointment_status? @default(PENDING)
+
+  // PARA PAGAMENTO NO AGENDAMENTO
+  payment_status  String              @default("PENDING") // PENDING | PAID | FAILED
+  amount_total    Float
+  amount_paid     Float?              // quanto já pagou (ex: 50%)
+  payment_id      String?             // id do pagamento (MercadoPago/Stripe)
+  payment_link    String?             // link gerado
+
+  notes           String?
+  created_at      DateTime?           @default(now()) @db.Timestamptz(6)
+
+  services        services            @relation(fields: [service_id], references: [id])
+  users           users               @relation(fields: [user_id], references: [id])
 }
 
 model schedule_blocks {
