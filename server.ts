@@ -438,29 +438,37 @@ app.post('/appointments', async (req, res) => {
         console.log("DEBUG PIX:", {
             metade,
             email: user.email,
+            first_name: user.name,
             service: service.name,
             cpf: user.cpf
             });
         const payment = await paymentClient.create({
-            body: {
-                transaction_amount: metade,
-                description: `Agendamento - ${service.name}`,
-                payment_method_id: 'pix',
-                payer: {
-                    email: user.email,
-                    identification: {
-                        type: "CPF",
-                        number: user.cpf
-                    }
-                },
-                notification_url: 'https://tranca-app.onrender.com/webhook/mercadopago',
-                external_reference: appointment.id,
-                date_of_expiration: new Date(Date.now() + 30 * 60 * 1000).toISOString()
-
+        body: {
+            transaction_amount: Number(metade),
+            description: `Agendamento ${user.name}]- ${service.name}`,
+            payment_method_id: 'pix',
+            payer: {
+            email: user.email,
+            first_name: user.name,
+            identification: {
+                type: 'CPF',
+                number: user.cpf
             }
+            },
+            notification_url: 'https://tranca-app.onrender.com/webhook/mercadopago',
+            external_reference: appointment.id
+        }
         });
 
         const pix = payment.point_of_interaction?.transaction_data;
+
+        res.json({
+        appointment,
+        pix: {
+            qr_code: pix?.qr_code,
+            qr_code_base64: pix?.qr_code_base64
+        }
+        });
 
         // salva dados do pagamento
         await prisma.appointments.update({
