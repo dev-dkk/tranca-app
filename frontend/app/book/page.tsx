@@ -191,7 +191,9 @@ const handleBooking = async () => {
                     >
                         {loading ? 'Agendando...' : '✅ Confirmar Agendamento'}
                     </button>
-                    {pix && (
+                    
+                </div>
+                {pix && (
                         <div className="mt-6 p-4 border rounded-xl bg-white shadow text-center">
                             <h2 className="text-lg font-bold mb-2">💳 Pagamento via PIX</h2>
 
@@ -214,7 +216,6 @@ const handleBooking = async () => {
                             </p>
                         </div>
                         )}
-                </div>
             </div>
         </div>
     </div>
