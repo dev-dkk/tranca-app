@@ -7,6 +7,8 @@ import { format, addHours, isSameDay, parseISO, setHours, setMinutes } from 'dat
 import { ptBR } from 'date-fns/locale';
 import '../calendar.css'; // Importa nosso CSS bonito
 
+console.log("🔥 PAGINA DE AGENDAMENTO CARREGOU");
+
 function BookingContent() {
   type PixData = {
   qr_code: string;
