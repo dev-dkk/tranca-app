@@ -126,8 +126,15 @@ function BookingContent() {
                 })
             });
             if (!res.ok) throw new Error("Erro ao agendar");
-            alert("✅ Agendamento realizado com sucesso!");
-            router.push('/profile'); // Manda pro perfil pra ver o agendamento
+            const data = await res.json();
+
+            if (data.pix) {
+            // mostrar QR code
+            setPix(data.pix);
+            } else {
+            alert("Erro ao gerar pagamento");
+            }
+            router.push('/my-appointments'); // Manda pra ver o agendamento
         } catch (error) {
             alert("Erro: Esse horário pode ter sido pego por outra pessoa agora pouco.");
         } finally{
