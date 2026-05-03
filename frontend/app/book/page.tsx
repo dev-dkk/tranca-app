@@ -73,6 +73,7 @@ const [pix, setPix] = useState<PixData | null>(null);
   }, [selectedDate]);
 
 const handleBooking = async () => {
+    console.log("🔥 CLIQUEI NO BOTÃO");
   if (!selectedTime || !service || !user) return;
   setLoading(true);
 
@@ -92,7 +93,7 @@ const handleBooking = async () => {
 
     const data = await res.json();
     console.log("RESPOSTA BACKEND:", data);
-    
+
     if (!res.ok) throw new Error("Erro ao agendar");
 
     // AQUI É O PONTO CRÍTICO
