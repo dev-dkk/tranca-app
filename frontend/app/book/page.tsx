@@ -8,6 +8,12 @@ import { ptBR } from 'date-fns/locale';
 import '../calendar.css'; // Importa nosso CSS bonito
 
 function BookingContent() {
+  type PixData = {
+  qr_code: string;
+  qr_code_base64: string;
+};
+
+const [pix, setPix] = useState<PixData | null>(null);
   const router = useRouter();
   const searchParams = useSearchParams();
   const serviceId = searchParams.get('serviceId');
@@ -66,36 +72,41 @@ function BookingContent() {
         });
   }, [selectedDate]);
 
-  const handleBooking = async () => {
-    if (!selectedTime || !service || !user) return;
-    setLoading(true);
+const handleBooking = async () => {
+  if (!selectedTime || !service || !user) return;
+  setLoading(true);
 
-    // Monta a data final combinando o Dia escolhido + Hora escolhida
-    const [hora, minuto] = selectedTime.split(':').map(Number);
-    const finalDate = setMinutes(setHours(selectedDate, hora), minuto);
+  const [hora, minuto] = selectedTime.split(':').map(Number);
+  const finalDate = setMinutes(setHours(selectedDate, hora), minuto);
 
-    try {
-        const res = await fetch('https://tranca-app.onrender.com/appointments', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                userId: user.id,
-                serviceId: service.id,
-                date: finalDate.toISOString()
-            })
-        });
+  try {
+    const res = await fetch('https://tranca-app.onrender.com/appointments', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        userId: user.id,
+        serviceId: service.id,
+        date: finalDate.toISOString()
+      })
+    });
 
-        if (!res.ok) throw new Error("Erro ao agendar");
+    const data = await res.json();
 
-        alert("✅ Agendamento realizado com sucesso!");
-        router.push('/profile'); // Manda pro perfil pra ver o agendamento
+    if (!res.ok) throw new Error("Erro ao agendar");
 
-    } catch (error) {
-        alert("Erro: Esse horário pode ter sido pego por outra pessoa agora pouco.");
-    } finally {
-        setLoading(false);
+    // AQUI É O PONTO CRÍTICO
+    if (data.pix) {
+      setPix(data.pix); // salva o PIX no estado
+    } else {
+      alert("Erro ao gerar pagamento");
     }
-  };
+
+  } catch (error) {
+    alert("Erro: Esse horário pode ter sido pego por outra pessoa agora pouco.");
+  } finally {
+    setLoading(false);
+  }
+};
 
   // Função para verificar se um horário da lista está ocupado
   const isSlotBusy = (time: string) => {
@@ -180,6 +191,29 @@ function BookingContent() {
                     >
                         {loading ? 'Agendando...' : '✅ Confirmar Agendamento'}
                     </button>
+                    {pix && (
+                        <div className="mt-6 p-4 border rounded-xl bg-white shadow text-center">
+                            <h2 className="text-lg font-bold mb-2">💳 Pagamento via PIX</h2>
+
+                            <img
+                            src={`data:image/png;base64,${pix.qr_code_base64}`}
+                            alt="QR Code PIX"
+                            className="mx-auto mb-4"
+                            />
+
+                            <p className="text-sm mb-2">Ou copie o código:</p>
+
+                            <textarea
+                            className="w-full p-2 border rounded text-xs"
+                            value={pix.qr_code}
+                            readOnly
+                            />
+
+                            <p className="text-xs text-gray-500 mt-2">
+                            Após o pagamento, seu agendamento será confirmado automaticamente.
+                            </p>
+                        </div>
+                        )}
                 </div>
             </div>
         </div>

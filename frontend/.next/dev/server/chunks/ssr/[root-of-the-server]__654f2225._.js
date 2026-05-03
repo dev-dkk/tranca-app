@@ -129,18 +129,43 @@ function BookingContent() {
             const data = await res.json();
 
             if (data.pix) {
-            // mostrar QR code
             setPix(data.pix);
+            setAppointmentId(data.appointment.id);
+            setStatus('waiting');
             } else {
             alert("Erro ao gerar pagamento");
             }
-            router.push('/my-appointments'); // Manda pra ver o agendamento
-        } catch (error) {
+
+            // ❌ REMOVE ISSO
+            // router.push('/my-appointments');     } catch (error) {
             alert("Erro: Esse horário pode ter sido pego por outra pessoa agora pouco.");
         } finally{
             setLoading(false);
         }
     };
+    //ADICIONANDO POLLING
+    useEffect(() => {
+    if (status !== 'waiting' || !appointmentId) return;
+
+    const interval = setInterval(async () => {
+        try {
+        const res = await fetch(
+            `https://tranca-app.onrender.com/appointments/${appointmentId}`
+        );
+
+        const data = await res.json();
+
+        if (data.payment_status === 'PAID') {
+            setStatus('paid');
+            clearInterval(interval);
+        }
+        } catch (err) {
+        console.error("Erro ao verificar pagamento");
+        }
+    }, 5000);
+
+    return () => clearInterval(interval);
+    }, [status, appointmentId]);
     // Função para verificar se um horário da lista está ocupado
     const isSlotBusy = (time)=>{
         const [h, m] = time.split(':').map(Number);
