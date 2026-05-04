@@ -34,7 +34,7 @@ function BookingContent() {
 
   // 🔑 INIT MERCADO PAGO
   useEffect(() => {
-    initMercadoPago('process.env.NEXT_PUBLIC_APP_USR_PUBLIC_KEY!');
+    initMercadoPago(process.env.NEXT_PUBLIC_APP_USR_PUBLIC_KEY!);
   }, []);
 
   useEffect(() => {
