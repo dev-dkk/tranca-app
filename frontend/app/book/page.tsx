@@ -18,6 +18,7 @@ function BookingContent() {
 
   const [pix, setPix] = useState<PixData | null>(null);
   const [paymentType, setPaymentType] = useState<'pix' | 'card' | null>(null);
+  const [mpReady, setMpReady] = useState(false);
 
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -32,17 +33,19 @@ function BookingContent() {
 
   const timeSlots = ["09:00", "10:00", "11:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00"];
 
-  // 🔑 INIT MERCADO PAGO
- useEffect(() => {
-  const key = process.env.NEXT_PUBLIC_MP_PUBLIC_KEY;
+  // ✅ INIT MERCADO PAGO (UMA VEZ SÓ)
+  useEffect(() => {
+    const key = process.env.NEXT_PUBLIC_MP_PUBLIC_KEY;
 
-  if (!key) {
-    console.error("❌ PUBLIC KEY NÃO ENCONTRADA");
-    return;
-  }
+    if (!key) {
+      console.error("❌ PUBLIC KEY NÃO ENCONTRADA");
+      return;
+    }
 
-  initMercadoPago(key);
-}, []);
+    initMercadoPago(key);
+    setMpReady(true);
+  }, []);
+
   useEffect(() => {
     const userStored = localStorage.getItem('user');
     if (!userStored) {
@@ -106,7 +109,6 @@ function BookingContent() {
 
       if (paymentType === 'card') {
         alert("Agora preencha os dados do cartão abaixo 👇");
-        
       }
 
     } catch {
@@ -189,7 +191,7 @@ function BookingContent() {
             })}
           </div>
 
-          {/* MÉTODO DE PAGAMENTO */}
+          {/* PAGAMENTO */}
           <h3 className="text-lg font-bold text-beleza-900 mb-4">3. Forma de Pagamento</h3>
 
           <div className="flex gap-4 mb-6">
@@ -227,38 +229,42 @@ function BookingContent() {
           </div>
 
           {/* PIX */}
-          {pix && paymentType === 'pix' && (
-            <div className="mt-6 p-4 border rounded-xl bg-white shadow text-center">
-              <h2 className="text-lg font-bold mb-2">💳 Pagamento via PIX</h2>
+          <div style={{ display: paymentType === 'pix' ? 'block' : 'none' }}>
+            {pix && (
+              <div className="mt-6 p-4 border rounded-xl bg-white shadow text-center">
+                <h2 className="text-lg font-bold mb-2">💳 Pagamento via PIX</h2>
 
-              <img
-                src={`data:image/png;base64,${pix.qr_code_base64}`}
-                className="mx-auto mb-4"
-              />
+                <img
+                  src={`data:image/png;base64,${pix.qr_code_base64}`}
+                  className="mx-auto mb-4"
+                />
 
-              <textarea
-                className="w-full p-2 border rounded text-xs"
-                value={pix.qr_code}
-                readOnly
-              />
-            </div>
-          )}
+                <textarea
+                  className="w-full p-2 border rounded text-xs"
+                  value={pix.qr_code}
+                  readOnly
+                />
+              </div>
+            )}
+          </div>
 
-          {/* CARTÃO */}
-          {paymentType === 'card' && (
+          {/* CARTÃO (NUNCA DESMONTA) */}
+          <div style={{ display: paymentType === 'card' ? 'block' : 'none' }}>
             <div className="mt-6 p-4 border rounded-xl bg-white shadow">
-              <CardPayment
-                initialization={{ amount: Number(service.price) }}
-                onSubmit={async (formData) => {
-                  await fetch('https://tranca-app.onrender.com/payments/card', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(formData)
-                  });
-                }}
-              />
+              {mpReady && (
+                <CardPayment
+                  initialization={{ amount: Number(service.price) }}
+                  onSubmit={async (formData) => {
+                    await fetch('https://tranca-app.onrender.com/payments/card', {
+                      method: 'POST',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify(formData)
+                    });
+                  }}
+                />
+              )}
             </div>
-          )}
+          </div>
 
         </div>
       </div>
