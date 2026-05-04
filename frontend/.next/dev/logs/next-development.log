@@ -1,1 +1,14 @@
-[00:00:01.425] Server  LOG      ✓ Ready in 986ms
+[00:00:01.602] Server  LOG      ✓ Ready in 1116ms
+[00:00:04.653] Server  LOG      ○ Compiling /book ...
+[00:00:05.928] Server  LOG     🔥 PAGINA DE AGENDAMENTO CARREGOU
+[00:00:06.149] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:06.149] Browser LOG     🔥 PAGINA DE AGENDAMENTO CARREGOU
+[00:00:13.622] Browser ERROR   Expected the PUBLIC_KEY to render the MercadoPago SDK React
+[00:04:01.798] Server  LOG      ✓ Compiled in 95ms
+[00:04:02.283] Browser LOG     🔥 PAGINA DE AGENDAMENTO CARREGOU
+[00:04:03.284] Browser ERROR   Expected the PUBLIC_KEY to render the MercadoPago SDK React
+[00:04:10.903] Server  LOG     🔥 PAGINA DE AGENDAMENTO CARREGOU
+[00:04:11.288] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:11.288] Browser LOG     🔥 PAGINA DE AGENDAMENTO CARREGOU
+[00:06:49.434] Server  LOG      ✓ Compiled in 70ms
+[00:06:50.291] Browser LOG     🔥 PAGINA DE AGENDAMENTO CARREGOU

@@ -36,6 +36,9 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$
 var __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$react$2d$calendar$2f$dist$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/frontend/node_modules/react-calendar/dist/index.js [app-ssr] (ecmascript) <locals>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$date$2d$fns$2f$setHours$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/frontend/node_modules/date-fns/setHours.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$date$2d$fns$2f$setMinutes$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/frontend/node_modules/date-fns/setMinutes.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f40$mercadopago$2f$sdk$2d$react$2f$esm$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/frontend/node_modules/@mercadopago/sdk-react/esm/index.js [app-ssr] (ecmascript) <locals>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f40$mercadopago$2f$sdk$2d$react$2f$esm$2f$mercadoPago$2f$initMercadoPago$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__initMercadoPago$3e$__ = __turbopack_context__.i("[project]/frontend/node_modules/@mercadopago/sdk-react/esm/mercadoPago/initMercadoPago/index.js [app-ssr] (ecmascript) <export default as initMercadoPago>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f40$mercadopago$2f$sdk$2d$react$2f$esm$2f$bricks$2f$cardPayment$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__CardPayment$3e$__ = __turbopack_context__.i("[project]/frontend/node_modules/@mercadopago/sdk-react/esm/bricks/cardPayment/index.js [app-ssr] (ecmascript) <export default as CardPayment>");
 'use client';
 ;
 ;
@@ -43,7 +46,11 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$
 ;
 ;
 ;
+;
+console.log("🔥 PAGINA DE AGENDAMENTO CARREGOU");
 function BookingContent() {
+    const [pix, setPix] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(null);
+    const [paymentType, setPaymentType] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(null);
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRouter"])();
     const searchParams = (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useSearchParams"])();
     const serviceId = searchParams.get('serviceId');
@@ -53,7 +60,6 @@ function BookingContent() {
     const [busySlots, setBusySlots] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])([]);
     const [selectedTime, setSelectedTime] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(null);
     const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
-    // Horários de funcionamento (Ex: 9h às 18h)
     const timeSlots = [
         "09:00",
         "10:00",
@@ -65,8 +71,11 @@ function BookingContent() {
         "17:00",
         "18:00"
     ];
+    // 🔑 INIT MERCADO PAGO
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
-        // 1. Verifica Login
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f40$mercadopago$2f$sdk$2d$react$2f$esm$2f$mercadoPago$2f$initMercadoPago$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__initMercadoPago$3e$__["initMercadoPago"])('process.env.NEXT_PUBLIC_APP_USR_PUBLIC_KEY!');
+    }, []);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
         const userStored = localStorage.getItem('user');
         if (!userStored) {
             alert("Você precisa estar logado para agendar!");
@@ -74,7 +83,6 @@ function BookingContent() {
             return;
         }
         setUser(JSON.parse(userStored));
-        // 2. Busca Serviço
         if (serviceId) {
             fetch('https://tranca-app.onrender.com/services').then((res)=>res.json()).then((data)=>{
                 const found = data.find((s)=>s.id === serviceId);
@@ -85,32 +93,22 @@ function BookingContent() {
         serviceId,
         router
     ]);
-    // 3. Busca horários ocupados (CÓDIGO SEGURO)
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
-        // Só busca se tiver uma data selecionada
         if (!selectedDate) return;
         fetch(`https://tranca-app.onrender.com/appointments/availability?date=${selectedDate.toISOString()}`).then((res)=>res.json()).then((data)=>{
-            // VERIFICAÇÃO DE SEGURANÇA:
-            // Só tenta rodar o .map se o que chegou for realmente uma Lista (Array)
             if (Array.isArray(data)) {
                 const busy = data.map((app)=>new Date(app.date));
                 setBusySlots(busy);
             } else {
-                // Se não for array, é erro. Mostramos no console e limpamos os slots ocupados.
-                console.error("Erro ao buscar horários (Backend retornou erro):", data);
                 setBusySlots([]);
             }
-        }).catch((err)=>{
-            console.error("Erro de conexão:", err);
-            setBusySlots([]);
-        });
+        }).catch(()=>setBusySlots([]));
     }, [
         selectedDate
     ]);
     const handleBooking = async ()=>{
         if (!selectedTime || !service || !user) return;
         setLoading(true);
-        // Monta a data final combinando o Dia escolhido + Hora escolhida
         const [hora, minuto] = selectedTime.split(':').map(Number);
         const finalDate = (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$date$2d$fns$2f$setMinutes$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["setMinutes"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$date$2d$fns$2f$setHours$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["setHours"])(selectedDate, hora), minuto);
         try {
@@ -125,53 +123,23 @@ function BookingContent() {
                     date: finalDate.toISOString()
                 })
             });
-            if (!res.ok) throw new Error("Erro ao agendar");
             const data = await res.json();
-
-            if (data.pix) {
-            setPix(data.pix);
-            setAppointmentId(data.appointment.id);
-            setStatus('waiting');
-            } else {
-            alert("Erro ao gerar pagamento");
+            if (!res.ok) throw new Error();
+            if (paymentType === 'pix') {
+                setPix(data.pix);
             }
-
-            // ❌ REMOVE ISSO
-            // router.push('/my-appointments');     } catch (error) {
-            alert("Erro: Esse horário pode ter sido pego por outra pessoa agora pouco.");
+            if (paymentType === 'card') {
+                alert("Agora preencha os dados do cartão abaixo 👇");
+            }
+        } catch  {
+            alert("Erro ao agendar");
         } finally{
             setLoading(false);
         }
     };
-    //ADICIONANDO POLLING
-    useEffect(() => {
-    if (status !== 'waiting' || !appointmentId) return;
-
-    const interval = setInterval(async () => {
-        try {
-        const res = await fetch(
-            `https://tranca-app.onrender.com/appointments/${appointmentId}`
-        );
-
-        const data = await res.json();
-
-        if (data.payment_status === 'PAID') {
-            setStatus('paid');
-            clearInterval(interval);
-        }
-        } catch (err) {
-        console.error("Erro ao verificar pagamento");
-        }
-    }, 5000);
-
-    return () => clearInterval(interval);
-    }, [status, appointmentId]);
-    // Função para verificar se um horário da lista está ocupado
     const isSlotBusy = (time)=>{
         const [h, m] = time.split(':').map(Number);
-        // Cria uma data temporária com esse horário
         const slotDate = (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$date$2d$fns$2f$setMinutes$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["setMinutes"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$date$2d$fns$2f$setHours$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["setHours"])(selectedDate, h), m);
-        // Verifica se existe algum agendamento no banco com a MESMA hora
         return busySlots.some((busyDate)=>busyDate.getHours() === slotDate.getHours() && busyDate.getMinutes() === slotDate.getMinutes());
     };
     if (!service) return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -179,7 +147,7 @@ function BookingContent() {
         children: "Carregando serviço..."
     }, void 0, false, {
         fileName: "[project]/frontend/app/book/page.tsx",
-        lineNumber: 113,
+        lineNumber: 123,
         columnNumber: 24
     }, this);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -195,24 +163,24 @@ function BookingContent() {
                             children: "Você está agendando:"
                         }, void 0, false, {
                             fileName: "[project]/frontend/app/book/page.tsx",
-                            lineNumber: 121,
-                            columnNumber: 17
+                            lineNumber: 131,
+                            columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
                             className: "text-3xl font-bold mb-2 text-beleza-200",
                             children: service.name
                         }, void 0, false, {
                             fileName: "[project]/frontend/app/book/page.tsx",
-                            lineNumber: 122,
-                            columnNumber: 17
+                            lineNumber: 132,
+                            columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                             className: "text-sm opacity-70 mb-6",
                             children: service.description
                         }, void 0, false, {
                             fileName: "[project]/frontend/app/book/page.tsx",
-                            lineNumber: 123,
-                            columnNumber: 17
+                            lineNumber: 133,
+                            columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "mt-auto space-y-3",
@@ -224,8 +192,8 @@ function BookingContent() {
                                             children: "Valor:"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/app/book/page.tsx",
-                                            lineNumber: 127,
-                                            columnNumber: 25
+                                            lineNumber: 137,
+                                            columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                             className: "font-bold text-xl",
@@ -235,14 +203,14 @@ function BookingContent() {
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/frontend/app/book/page.tsx",
-                                            lineNumber: 128,
-                                            columnNumber: 25
+                                            lineNumber: 138,
+                                            columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend/app/book/page.tsx",
-                                    lineNumber: 126,
-                                    columnNumber: 21
+                                    lineNumber: 136,
+                                    columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "flex justify-between border-b border-white/20 pb-2",
@@ -251,8 +219,8 @@ function BookingContent() {
                                             children: "Duração:"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/app/book/page.tsx",
-                                            lineNumber: 131,
-                                            columnNumber: 25
+                                            lineNumber: 141,
+                                            columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                             className: "font-bold",
@@ -262,26 +230,26 @@ function BookingContent() {
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/frontend/app/book/page.tsx",
-                                            lineNumber: 132,
-                                            columnNumber: 25
+                                            lineNumber: 142,
+                                            columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend/app/book/page.tsx",
-                                    lineNumber: 130,
-                                    columnNumber: 21
+                                    lineNumber: 140,
+                                    columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/frontend/app/book/page.tsx",
-                            lineNumber: 125,
-                            columnNumber: 17
+                            lineNumber: 135,
+                            columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/frontend/app/book/page.tsx",
-                    lineNumber: 120,
-                    columnNumber: 13
+                    lineNumber: 130,
+                    columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     className: "p-6 md:w-2/3",
@@ -291,8 +259,8 @@ function BookingContent() {
                             children: "1. Escolha a Data"
                         }, void 0, false, {
                             fileName: "[project]/frontend/app/book/page.tsx",
-                            lineNumber: 139,
-                            columnNumber: 17
+                            lineNumber: 150,
+                            columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$react$2d$calendar$2f$dist$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["default"], {
                             onChange: (val)=>{
@@ -305,16 +273,16 @@ function BookingContent() {
                             className: "mb-8"
                         }, void 0, false, {
                             fileName: "[project]/frontend/app/book/page.tsx",
-                            lineNumber: 141,
-                            columnNumber: 17
+                            lineNumber: 152,
+                            columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
                             className: "text-lg font-bold text-beleza-900 mb-4",
                             children: "2. Escolha o Horário"
                         }, void 0, false, {
                             fileName: "[project]/frontend/app/book/page.tsx",
-                            lineNumber: 149,
-                            columnNumber: 17
+                            lineNumber: 160,
+                            columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "grid grid-cols-3 sm:grid-cols-4 gap-3 mb-8",
@@ -324,53 +292,147 @@ function BookingContent() {
                                     disabled: busy,
                                     onClick: ()=>setSelectedTime(time),
                                     className: `
-                                    py-2 px-4 rounded-lg text-sm font-bold border transition
-                                    ${busy ? 'bg-gray-100 text-gray-300 border-gray-100 cursor-not-allowed decoration-slice' : selectedTime === time ? 'bg-beleza-500 text-white border-beleza-500 shadow-lg scale-105' : 'bg-white text-beleza-700 border-beleza-200 hover:border-beleza-500 hover:bg-beleza-50'}
-                                `,
+                    py-2 px-4 rounded-lg text-sm font-bold border transition
+                    ${busy ? 'bg-gray-100 text-gray-300 border-gray-100 cursor-not-allowed' : selectedTime === time ? 'bg-beleza-500 text-white border-beleza-500 shadow-lg scale-105' : 'bg-white text-beleza-700 border-beleza-200 hover:border-beleza-500 hover:bg-beleza-50'}
+                  `,
                                     children: time
                                 }, time, false, {
                                     fileName: "[project]/frontend/app/book/page.tsx",
-                                    lineNumber: 155,
-                                    columnNumber: 29
+                                    lineNumber: 166,
+                                    columnNumber: 17
                                 }, this);
                             })
                         }, void 0, false, {
                             fileName: "[project]/frontend/app/book/page.tsx",
-                            lineNumber: 151,
-                            columnNumber: 17
+                            lineNumber: 162,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                            className: "text-lg font-bold text-beleza-900 mb-4",
+                            children: "3. Forma de Pagamento"
+                        }, void 0, false, {
+                            fileName: "[project]/frontend/app/book/page.tsx",
+                            lineNumber: 187,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "flex gap-4 mb-6",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                    onClick: ()=>setPaymentType('pix'),
+                                    className: `px-4 py-2 rounded-lg border font-bold ${paymentType === 'pix' ? 'bg-beleza-500 text-white border-beleza-500' : 'border-beleza-200 text-beleza-700'}`,
+                                    children: "PIX"
+                                }, void 0, false, {
+                                    fileName: "[project]/frontend/app/book/page.tsx",
+                                    lineNumber: 190,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                    onClick: ()=>setPaymentType('card'),
+                                    className: `px-4 py-2 rounded-lg border font-bold ${paymentType === 'card' ? 'bg-beleza-500 text-white border-beleza-500' : 'border-beleza-200 text-beleza-700'}`,
+                                    children: "Cartão"
+                                }, void 0, false, {
+                                    fileName: "[project]/frontend/app/book/page.tsx",
+                                    lineNumber: 201,
+                                    columnNumber: 13
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/frontend/app/book/page.tsx",
+                            lineNumber: 189,
+                            columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "flex justify-end",
                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                 onClick: handleBooking,
-                                disabled: !selectedTime || loading,
-                                className: "bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-lg transition disabled:opacity-50 disabled:cursor-not-allowed w-full md:w-auto",
-                                children: loading ? 'Agendando...' : '✅ Confirmar Agendamento'
+                                disabled: !selectedTime || !paymentType || loading,
+                                className: "bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-lg transition disabled:opacity-50 w-full md:w-auto",
+                                children: loading ? 'Processando...' : '✅ Confirmar'
                             }, void 0, false, {
                                 fileName: "[project]/frontend/app/book/page.tsx",
-                                lineNumber: 176,
-                                columnNumber: 21
+                                lineNumber: 214,
+                                columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/frontend/app/book/page.tsx",
-                            lineNumber: 175,
-                            columnNumber: 17
+                            lineNumber: 213,
+                            columnNumber: 11
+                        }, this),
+                        pix && paymentType === 'pix' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "mt-6 p-4 border rounded-xl bg-white shadow text-center",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
+                                    className: "text-lg font-bold mb-2",
+                                    children: "💳 Pagamento via PIX"
+                                }, void 0, false, {
+                                    fileName: "[project]/frontend/app/book/page.tsx",
+                                    lineNumber: 226,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                                    src: `data:image/png;base64,${pix.qr_code_base64}`,
+                                    className: "mx-auto mb-4"
+                                }, void 0, false, {
+                                    fileName: "[project]/frontend/app/book/page.tsx",
+                                    lineNumber: 228,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("textarea", {
+                                    className: "w-full p-2 border rounded text-xs",
+                                    value: pix.qr_code,
+                                    readOnly: true
+                                }, void 0, false, {
+                                    fileName: "[project]/frontend/app/book/page.tsx",
+                                    lineNumber: 233,
+                                    columnNumber: 15
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/frontend/app/book/page.tsx",
+                            lineNumber: 225,
+                            columnNumber: 13
+                        }, this),
+                        paymentType === 'card' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "mt-6 p-4 border rounded-xl bg-white shadow",
+                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f40$mercadopago$2f$sdk$2d$react$2f$esm$2f$bricks$2f$cardPayment$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__CardPayment$3e$__["CardPayment"], {
+                                initialization: {
+                                    amount: Number(service.price)
+                                },
+                                onSubmit: async (formData)=>{
+                                    await fetch('https://tranca-app.onrender.com/payments/card', {
+                                        method: 'POST',
+                                        headers: {
+                                            'Content-Type': 'application/json'
+                                        },
+                                        body: JSON.stringify(formData)
+                                    });
+                                }
+                            }, void 0, false, {
+                                fileName: "[project]/frontend/app/book/page.tsx",
+                                lineNumber: 244,
+                                columnNumber: 15
+                            }, this)
+                        }, void 0, false, {
+                            fileName: "[project]/frontend/app/book/page.tsx",
+                            lineNumber: 243,
+                            columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/frontend/app/book/page.tsx",
-                    lineNumber: 138,
-                    columnNumber: 13
+                    lineNumber: 148,
+                    columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/frontend/app/book/page.tsx",
-            lineNumber: 117,
-            columnNumber: 9
+            lineNumber: 127,
+            columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/frontend/app/book/page.tsx",
-        lineNumber: 116,
+        lineNumber: 126,
         columnNumber: 5
     }, this);
 }
@@ -380,18 +442,18 @@ function BookPage() {
             children: "Carregando..."
         }, void 0, false, {
             fileName: "[project]/frontend/app/book/page.tsx",
-            lineNumber: 191,
-            columnNumber: 32
+            lineNumber: 265,
+            columnNumber: 25
         }, void 0),
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(BookingContent, {}, void 0, false, {
             fileName: "[project]/frontend/app/book/page.tsx",
-            lineNumber: 191,
-            columnNumber: 58
+            lineNumber: 266,
+            columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/frontend/app/book/page.tsx",
-        lineNumber: 191,
-        columnNumber: 12
+        lineNumber: 265,
+        columnNumber: 5
     }, this);
 }
 }),

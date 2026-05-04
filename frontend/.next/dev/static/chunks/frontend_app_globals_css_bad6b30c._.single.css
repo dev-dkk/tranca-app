@@ -991,11 +991,6 @@ img, video {
   --tw-gradient-to: transparent var(--tw-gradient-to-position);
 }
 
-.decoration-slice {
-  -webkit-box-decoration-break: slice;
-  box-decoration-break: slice;
-}
-
 .bg-cover {
   background-size: cover;
 }
