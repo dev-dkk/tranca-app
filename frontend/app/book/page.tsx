@@ -3,19 +3,12 @@
 import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Calendar from 'react-calendar';
-import { format, addHours, isSameDay, parseISO, setHours, setMinutes } from 'date-fns';
-import { ptBR } from 'date-fns/locale';
-import '../calendar.css'; // Importa nosso CSS bonito
+import { setHours, setMinutes } from 'date-fns';
+import '../calendar.css';
 
-console.log("🔥 PAGINA DE AGENDAMENTO CARREGOU!!");
+import { initMercadoPago, CardPayment } from '@mercadopago/sdk-react';
 
 function BookingContent() {
-  type PixData = {
-  qr_code: string;
-  qr_code_base64: string;
-};
-
-const [pix, setPix] = useState<PixData | null>(null);
   const router = useRouter();
   const searchParams = useSearchParams();
   const serviceId = searchParams.get('serviceId');
@@ -23,209 +16,164 @@ const [pix, setPix] = useState<PixData | null>(null);
   const [service, setService] = useState<any>(null);
   const [user, setUser] = useState<any>(null);
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
-  const [busySlots, setBusySlots] = useState<Date[]>([]);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
-  // Horários de funcionamento (Ex: 9h às 18h)
-  const timeSlots = ["09:00", "10:00", "11:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00"];
+  const [pix, setPix] = useState<any>(null);
+  const [method, setMethod] = useState<'pix' | 'card' | null>(null);
 
+  const timeSlots = ["09:00","10:00","11:00","13:00","14:00","15:00","16:00","17:00","18:00"];
+
+  // ✅ INIT MP (CORRETO)
   useEffect(() => {
-    // 1. Verifica Login
+    initMercadoPago('SUA_PUBLIC_KEY_AQUI');
+  }, []);
+
+  // ✅ USER + SERVICE
+  useEffect(() => {
     const userStored = localStorage.getItem('user');
     if (!userStored) {
-        alert("Você precisa estar logado para agendar!");
-        router.push('/login');
-        return;
+      router.push('/login');
+      return;
     }
     setUser(JSON.parse(userStored));
 
-    // 2. Busca Serviço
     if (serviceId) {
-        fetch('https://tranca-app.onrender.com/services').then(res => res.json()).then(data => {
-            const found = data.find((s: any) => s.id === serviceId);
-            setService(found);
+      fetch('https://tranca-app.onrender.com/services')
+        .then(res => res.json())
+        .then(data => {
+          const found = data.find((s: any) => s.id === serviceId);
+          setService(found);
         });
     }
   }, [serviceId, router]);
 
-// 3. Busca horários ocupados (CÓDIGO SEGURO)
-  useEffect(() => {
-    // Só busca se tiver uma data selecionada
-    if (!selectedDate) return;
-
-    fetch(`https://tranca-app.onrender.com/appointments/availability?date=${selectedDate.toISOString()}`)
-        .then(res => res.json())
-        .then((data) => {
-            // VERIFICAÇÃO DE SEGURANÇA:
-            // Só tenta rodar o .map se o que chegou for realmente uma Lista (Array)
-            if (Array.isArray(data)) {
-                const busy = data.map((app: any) => new Date(app.date));
-                setBusySlots(busy);
-            } else {
-                // Se não for array, é erro. Mostramos no console e limpamos os slots ocupados.
-                console.error("Erro ao buscar horários (Backend retornou erro):", data);
-                setBusySlots([]); 
-            }
-        })
-        .catch(err => {
-            console.error("Erro de conexão:", err);
-            setBusySlots([]);
-        });
-  }, [selectedDate]);
-
-const handleBooking = async () => {
-    console.log("🔥 CLIQUEI NO BOTÃO");
-  if (!selectedTime || !service || !user) return;
-  setLoading(true);
-
-  const [hora, minuto] = selectedTime.split(':').map(Number);
-  const finalDate = setMinutes(setHours(selectedDate, hora), minuto);
-
-  try {
-    const res = await fetch('https://tranca-app.onrender.com/appointments', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        userId: user.id,
-        serviceId: service.id,
-        date: finalDate.toISOString()
-      })
-    });
-
-    const data = await res.json();
-    console.log("RESPOSTA BACKEND:", data);
-
-    if (!res.ok) throw new Error("Erro ao agendar");
-
-    // AQUI É O PONTO CRÍTICO
-    if (data.pix) {
-      setPix(data.pix); // salva o PIX no estado
-    } else {
-      alert("Erro ao gerar pagamento");
-    }
-
-  } catch (error) {
-    alert("Erro: Esse horário pode ter sido pego por outra pessoa agora pouco.");
-  } finally {
-    setLoading(false);
-  }
-};
-
-  // Função para verificar se um horário da lista está ocupado
-  const isSlotBusy = (time: string) => {
-    const [h, m] = time.split(':').map(Number);
-    // Cria uma data temporária com esse horário
-    const slotDate = setMinutes(setHours(selectedDate, h), m);
-    
-    // Verifica se existe algum agendamento no banco com a MESMA hora
-    return busySlots.some(busyDate => 
-        busyDate.getHours() === slotDate.getHours() && 
-        busyDate.getMinutes() === slotDate.getMinutes()
-    );
+  // ✅ CRIAR DATA FINAL
+  const getFinalDate = () => {
+    const [h, m] = selectedTime!.split(':').map(Number);
+    return setMinutes(setHours(selectedDate, h), m);
   };
 
-  if (!service) return <div className="p-10 text-center">Carregando serviço...</div>;
+  // =========================
+  // 💳 PIX
+  // =========================
+  const handlePix = async () => {
+    setLoading(true);
+
+    try {
+      const res = await fetch('https://tranca-app.onrender.com/appointments', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          userId: user.id,
+          serviceId: service.id,
+          date: getFinalDate().toISOString()
+        })
+      });
+
+      const data = await res.json();
+      if (data.pix) setPix(data.pix);
+
+    } catch {
+      alert("Erro ao gerar PIX");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // =========================
+  // 💳 CARTÃO
+  // =========================
+  const handleCard = async (formData: any) => {
+    try {
+      const res = await fetch('https://tranca-app.onrender.com/pay-card', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          token: formData.token,
+          paymentMethodId: formData.payment_method_id,
+          issuerId: formData.issuer_id,
+          installments: formData.installments,
+          userId: user.id,
+          serviceId: service.id,
+          date: getFinalDate().toISOString()
+        })
+      });
+
+      const data = await res.json();
+
+      if (data.payment.status === 'approved') {
+        alert("✅ Pagamento aprovado!");
+        router.push('/profile');
+      } else {
+        alert("⏳ Pagamento em processamento");
+      }
+
+    } catch {
+      alert("Erro no pagamento");
+    }
+  };
+
+  if (!service) return <div className="p-10">Carregando...</div>;
 
   return (
-    <div className="min-h-screen bg-beleza-50 py-8 px-4 flex justify-center items-start">
-        <div className="max-w-4xl w-full bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col md:flex-row border border-beleza-100">
-            
-            {/* Esquerda: Resumo do Serviço */}
-            <div className="bg-beleza-900 text-white p-8 md:w-1/3 flex flex-col">
-                <h2 className="text-xl font-bold mb-4 opacity-80">Você está agendando:</h2>
-                <h1 className="text-3xl font-bold mb-2 text-beleza-200">{service.name}</h1>
-                <p className="text-sm opacity-70 mb-6">{service.description}</p>
-                
-                <div className="mt-auto space-y-3">
-                    <div className="flex justify-between border-b border-white/20 pb-2">
-                        <span>Valor:</span>
-                        <span className="font-bold text-xl">R$ {service.price}</span>
-                    </div>
-                    <div className="flex justify-between border-b border-white/20 pb-2">
-                        <span>Duração:</span>
-                        <span className="font-bold">{service.duration_minutes} min</span>
-                    </div>
-                </div>
-            </div>
+    <div className="p-6 max-w-4xl mx-auto">
 
-            {/* Direita: Calendário e Horários */}
-            <div className="p-6 md:w-2/3">
-                <h3 className="text-lg font-bold text-beleza-900 mb-4">1. Escolha a Data</h3>
-                
-                <Calendar 
-                    onChange={(val) => { setSelectedDate(val as Date); setSelectedTime(null); }} 
-                    value={selectedDate}
-                    locale="pt-BR"
-                    minDate={new Date()} // Não deixa agendar no passado
-                    className="mb-8"
-                />
+      <h1 className="text-xl font-bold mb-4">{service.name}</h1>
 
-                <h3 className="text-lg font-bold text-beleza-900 mb-4">2. Escolha o Horário</h3>
-                
-                <div className="grid grid-cols-3 sm:grid-cols-4 gap-3 mb-8">
-                    {timeSlots.map(time => {
-                        const busy = isSlotBusy(time);
-                        return (
-                            <button
-                                key={time}
-                                disabled={busy}
-                                onClick={() => setSelectedTime(time)}
-                                className={`
-                                    py-2 px-4 rounded-lg text-sm font-bold border transition
-                                    ${busy 
-                                        ? 'bg-gray-100 text-gray-300 border-gray-100 cursor-not-allowed decoration-slice' 
-                                        : selectedTime === time
-                                            ? 'bg-beleza-500 text-white border-beleza-500 shadow-lg scale-105'
-                                            : 'bg-white text-beleza-700 border-beleza-200 hover:border-beleza-500 hover:bg-beleza-50'
-                                    }
-                                `}
-                            >
-                                {time}
-                            </button>
-                        )
-                    })}
-                </div>
+      {/* DATA */}
+      <Calendar value={selectedDate} onChange={(d) => setSelectedDate(d as Date)} />
 
-                <div className="flex justify-end">
-                    <button 
-                        onClick={handleBooking}
-                        disabled={!selectedTime || loading}
-                        className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-lg transition disabled:opacity-50 disabled:cursor-not-allowed w-full md:w-auto"
-                    >
-                        {loading ? 'Agendando...' : '✅ Confirmar Agendamento'}
-                    </button>
-                    
-                </div>
-                {pix && (
-                        <div className="mt-6 p-4 border rounded-xl bg-white shadow text-center">
-                            <h2 className="text-lg font-bold mb-2">💳 Pagamento via PIX</h2>
+      {/* HORÁRIOS */}
+      <div className="grid grid-cols-3 gap-2 mt-4">
+        {timeSlots.map(t => (
+          <button key={t} onClick={() => setSelectedTime(t)}>
+            {t}
+          </button>
+        ))}
+      </div>
 
-                            <img
-                            src={`data:image/png;base64,${pix.qr_code_base64}`}
-                            alt="QR Code PIX"
-                            className="mx-auto mb-4"
-                            />
-
-                            <p className="text-sm mb-2">Ou copie o código:</p>
-
-                            <textarea
-                            className="w-full p-2 border rounded text-xs"
-                            value={pix.qr_code}
-                            readOnly
-                            />
-
-                            <p className="text-xs text-gray-500 mt-2">
-                            Após o pagamento, seu agendamento será confirmado automaticamente.
-                            </p>
-                        </div>
-                        )}
-            </div>
+      {/* MÉTODO */}
+      {selectedTime && (
+        <div className="mt-6 space-x-2">
+          <button onClick={() => setMethod('pix')}>PIX</button>
+          <button onClick={() => setMethod('card')}>Cartão</button>
         </div>
+      )}
+
+      {/* PIX UI */}
+      {method === 'pix' && (
+        <div className="mt-6">
+          <button onClick={handlePix}>
+            {loading ? 'Gerando PIX...' : 'Pagar com PIX'}
+          </button>
+
+          {pix && (
+            <div>
+              <img src={`data:image/png;base64,${pix.qr_code_base64}`} />
+              <textarea value={pix.qr_code} readOnly />
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* CARTÃO UI */}
+      {method === 'card' && (
+        <div className="mt-6">
+          <CardPayment
+            initialization={{ amount: Number(service.price) }}
+            onSubmit={handleCard}
+          />
+        </div>
+      )}
     </div>
   );
 }
 
-export default function BookPage() {
-    return <Suspense fallback={<div>Carregando...</div>}><BookingContent /></Suspense>;
+export default function Page() {
+  return (
+    <Suspense fallback={<div>Carregando...</div>}>
+      <BookingContent />
+    </Suspense>
+  );
 }
