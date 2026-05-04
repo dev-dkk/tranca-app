@@ -53,7 +53,10 @@ function BookingContent() {
     // 🔑 INIT MERCADO PAGO
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "BookingContent.useEffect": ()=>{
-            (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f40$mercadopago$2f$sdk$2d$react$2f$esm$2f$mercadoPago$2f$initMercadoPago$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__initMercadoPago$3e$__["initMercadoPago"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$build$2f$polyfills$2f$process$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].env.NEXT_PUBLIC_APP_USR_PUBLIC_KEY);
+            const key = ("TURBOPACK compile-time value", "APP_USR-fde5250d-ab76-4961-8501-872e875cba0f");
+            if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
+            ;
+            (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f40$mercadopago$2f$sdk$2d$react$2f$esm$2f$mercadoPago$2f$initMercadoPago$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__initMercadoPago$3e$__["initMercadoPago"])(key);
         }
     }["BookingContent.useEffect"], []);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
@@ -146,7 +149,7 @@ function BookingContent() {
         children: "Carregando serviço..."
     }, void 0, false, {
         fileName: "[project]/frontend/app/book/page.tsx",
-        lineNumber: 123,
+        lineNumber: 129,
         columnNumber: 24
     }, this);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -162,7 +165,7 @@ function BookingContent() {
                             children: "Você está agendando:"
                         }, void 0, false, {
                             fileName: "[project]/frontend/app/book/page.tsx",
-                            lineNumber: 131,
+                            lineNumber: 137,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
@@ -170,7 +173,7 @@ function BookingContent() {
                             children: service.name
                         }, void 0, false, {
                             fileName: "[project]/frontend/app/book/page.tsx",
-                            lineNumber: 132,
+                            lineNumber: 138,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -178,7 +181,7 @@ function BookingContent() {
                             children: service.description
                         }, void 0, false, {
                             fileName: "[project]/frontend/app/book/page.tsx",
-                            lineNumber: 133,
+                            lineNumber: 139,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -191,7 +194,7 @@ function BookingContent() {
                                             children: "Valor:"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/app/book/page.tsx",
-                                            lineNumber: 137,
+                                            lineNumber: 143,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -202,13 +205,13 @@ function BookingContent() {
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/frontend/app/book/page.tsx",
-                                            lineNumber: 138,
+                                            lineNumber: 144,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend/app/book/page.tsx",
-                                    lineNumber: 136,
+                                    lineNumber: 142,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -218,7 +221,7 @@ function BookingContent() {
                                             children: "Duração:"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/app/book/page.tsx",
-                                            lineNumber: 141,
+                                            lineNumber: 147,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -229,25 +232,25 @@ function BookingContent() {
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/frontend/app/book/page.tsx",
-                                            lineNumber: 142,
+                                            lineNumber: 148,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend/app/book/page.tsx",
-                                    lineNumber: 140,
+                                    lineNumber: 146,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/frontend/app/book/page.tsx",
-                            lineNumber: 135,
+                            lineNumber: 141,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/frontend/app/book/page.tsx",
-                    lineNumber: 130,
+                    lineNumber: 136,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -258,7 +261,7 @@ function BookingContent() {
                             children: "1. Escolha a Data"
                         }, void 0, false, {
                             fileName: "[project]/frontend/app/book/page.tsx",
-                            lineNumber: 150,
+                            lineNumber: 156,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$react$2d$calendar$2f$dist$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["default"], {
@@ -272,7 +275,7 @@ function BookingContent() {
                             className: "mb-8"
                         }, void 0, false, {
                             fileName: "[project]/frontend/app/book/page.tsx",
-                            lineNumber: 152,
+                            lineNumber: 158,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -280,7 +283,7 @@ function BookingContent() {
                             children: "2. Escolha o Horário"
                         }, void 0, false, {
                             fileName: "[project]/frontend/app/book/page.tsx",
-                            lineNumber: 160,
+                            lineNumber: 166,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -297,13 +300,13 @@ function BookingContent() {
                                     children: time
                                 }, time, false, {
                                     fileName: "[project]/frontend/app/book/page.tsx",
-                                    lineNumber: 166,
+                                    lineNumber: 172,
                                     columnNumber: 17
                                 }, this);
                             })
                         }, void 0, false, {
                             fileName: "[project]/frontend/app/book/page.tsx",
-                            lineNumber: 162,
+                            lineNumber: 168,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -311,7 +314,7 @@ function BookingContent() {
                             children: "3. Forma de Pagamento"
                         }, void 0, false, {
                             fileName: "[project]/frontend/app/book/page.tsx",
-                            lineNumber: 187,
+                            lineNumber: 193,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -323,7 +326,7 @@ function BookingContent() {
                                     children: "PIX"
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/app/book/page.tsx",
-                                    lineNumber: 190,
+                                    lineNumber: 196,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -332,13 +335,13 @@ function BookingContent() {
                                     children: "Cartão"
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/app/book/page.tsx",
-                                    lineNumber: 201,
+                                    lineNumber: 207,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/frontend/app/book/page.tsx",
-                            lineNumber: 189,
+                            lineNumber: 195,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -350,12 +353,12 @@ function BookingContent() {
                                 children: loading ? 'Processando...' : '✅ Confirmar'
                             }, void 0, false, {
                                 fileName: "[project]/frontend/app/book/page.tsx",
-                                lineNumber: 214,
+                                lineNumber: 220,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/frontend/app/book/page.tsx",
-                            lineNumber: 213,
+                            lineNumber: 219,
                             columnNumber: 11
                         }, this),
                         pix && paymentType === 'pix' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -366,7 +369,7 @@ function BookingContent() {
                                     children: "💳 Pagamento via PIX"
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/app/book/page.tsx",
-                                    lineNumber: 226,
+                                    lineNumber: 232,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
@@ -374,7 +377,7 @@ function BookingContent() {
                                     className: "mx-auto mb-4"
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/app/book/page.tsx",
-                                    lineNumber: 228,
+                                    lineNumber: 234,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("textarea", {
@@ -383,13 +386,13 @@ function BookingContent() {
                                     readOnly: true
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/app/book/page.tsx",
-                                    lineNumber: 233,
+                                    lineNumber: 239,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/frontend/app/book/page.tsx",
-                            lineNumber: 225,
+                            lineNumber: 231,
                             columnNumber: 13
                         }, this),
                         paymentType === 'card' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -409,29 +412,29 @@ function BookingContent() {
                                 }
                             }, void 0, false, {
                                 fileName: "[project]/frontend/app/book/page.tsx",
-                                lineNumber: 244,
+                                lineNumber: 250,
                                 columnNumber: 15
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/frontend/app/book/page.tsx",
-                            lineNumber: 243,
+                            lineNumber: 249,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/frontend/app/book/page.tsx",
-                    lineNumber: 148,
+                    lineNumber: 154,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/frontend/app/book/page.tsx",
-            lineNumber: 127,
+            lineNumber: 133,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/frontend/app/book/page.tsx",
-        lineNumber: 126,
+        lineNumber: 132,
         columnNumber: 5
     }, this);
 }
@@ -448,17 +451,17 @@ function BookPage() {
             children: "Carregando..."
         }, void 0, false, {
             fileName: "[project]/frontend/app/book/page.tsx",
-            lineNumber: 265,
+            lineNumber: 271,
             columnNumber: 25
         }, void 0),
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(BookingContent, {}, void 0, false, {
             fileName: "[project]/frontend/app/book/page.tsx",
-            lineNumber: 266,
+            lineNumber: 272,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/frontend/app/book/page.tsx",
-        lineNumber: 265,
+        lineNumber: 271,
         columnNumber: 5
     }, this);
 }

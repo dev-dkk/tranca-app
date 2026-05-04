@@ -33,10 +33,16 @@ function BookingContent() {
   const timeSlots = ["09:00", "10:00", "11:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00"];
 
   // 🔑 INIT MERCADO PAGO
-  useEffect(() => {
-    initMercadoPago(process.env.NEXT_PUBLIC_APP_USR_PUBLIC_KEY!);
-  }, []);
+ useEffect(() => {
+  const key = process.env.NEXT_PUBLIC_MP_PUBLIC_KEY;
 
+  if (!key) {
+    console.error("❌ PUBLIC KEY NÃO ENCONTRADA");
+    return;
+  }
+
+  initMercadoPago(key);
+}, []);
   useEffect(() => {
     const userStored = localStorage.getItem('user');
     if (!userStored) {
