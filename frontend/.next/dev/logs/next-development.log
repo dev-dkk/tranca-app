@@ -1,29 +1,4 @@
-[00:00:01.602] Server  LOG      ✓ Ready in 1116ms
-[00:00:04.653] Server  LOG      ○ Compiling /book ...
-[00:00:05.928] Server  LOG     🔥 PAGINA DE AGENDAMENTO CARREGOU
-[00:00:06.149] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:06.149] Browser LOG     🔥 PAGINA DE AGENDAMENTO CARREGOU
-[00:00:13.622] Browser ERROR   Expected the PUBLIC_KEY to render the MercadoPago SDK React
-[00:04:01.798] Server  LOG      ✓ Compiled in 95ms
-[00:04:02.283] Browser LOG     🔥 PAGINA DE AGENDAMENTO CARREGOU
-[00:04:03.284] Browser ERROR   Expected the PUBLIC_KEY to render the MercadoPago SDK React
-[00:04:10.903] Server  LOG     🔥 PAGINA DE AGENDAMENTO CARREGOU
-[00:04:11.288] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:04:11.288] Browser LOG     🔥 PAGINA DE AGENDAMENTO CARREGOU
-[00:06:49.434] Server  LOG      ✓ Compiled in 70ms
-[00:06:50.291] Browser LOG     🔥 PAGINA DE AGENDAMENTO CARREGOU
-[00:10:12.164] Server  LOG      ✓ Compiled in 61ms
-[00:10:12.288] Browser LOG     🔥 PAGINA DE AGENDAMENTO CARREGOU
-[00:17:40.090] Server  LOG      ✓ Compiled in 63ms
-[00:17:40.294] Browser LOG     🔥 PAGINA DE AGENDAMENTO CARREGOU
-[00:17:59.338] Server  LOG      ✓ Compiled in 64ms
-[00:18:00.281] Browser LOG     🔥 PAGINA DE AGENDAMENTO CARREGOU
-[00:18:11.804] Server  LOG     🔥 PAGINA DE AGENDAMENTO CARREGOU
-[00:18:12.244] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:18:12.244] Browser LOG     🔥 PAGINA DE AGENDAMENTO CARREGOU
-[00:19:23.229] Server  LOG      ✓ Compiled in 58ms
-[00:19:24.293] Browser LOG     🔥 PAGINA DE AGENDAMENTO CARREGOU
-[00:19:46.825] Server  LOG      ✓ Compiled in 64ms
-[00:19:47.280] Browser LOG     🔥 PAGINA DE AGENDAMENTO CARREGOU
-[00:29:15.370] Server  LOG      ✓ Compiled in 65ms
-[00:29:16.280] Browser LOG     🔥 PAGINA DE AGENDAMENTO CARREGOU
+[00:00:03.881] Server  LOG      ✓ Ready in 2.7s
+[00:00:11.696] Server  LOG      ○ Compiling / ...
+[00:00:16.297] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:01:50.276] Browser LOG     RESPOSTA BACKEND: {"error":"Erro ao gerar pagamento"}
