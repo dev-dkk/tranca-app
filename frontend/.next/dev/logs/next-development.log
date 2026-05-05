@@ -2,3 +2,12 @@
 [00:00:11.696] Server  LOG      ○ Compiling / ...
 [00:00:16.297] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
 [00:01:50.276] Browser LOG     RESPOSTA BACKEND: {"error":"Erro ao gerar pagamento"}
+[00:30:57.479] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:36:27.243] Server  LOG      ✓ Compiled in 210ms
+[00:37:44.690] Server  LOG      ✓ Compiled in 219ms
+[00:38:15.586] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:44:50.537] Server  LOG      ✓ Compiled in 196ms
+[01:28:16.712] Server  LOG      ✓ Compiled in 79ms
+[01:28:25.062] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:32:46.082] Server  LOG      ✓ Compiled in 80ms
+[01:32:50.625] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold

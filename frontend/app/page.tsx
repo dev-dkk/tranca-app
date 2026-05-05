@@ -107,23 +107,6 @@ export default function Home() {
                     </Link>                      
 
 
-                    {/* Item 2: Painel Admin (SÓ APARECE SE FOR ADMIN) 
-                    {user.role === 'ADMIN' && (
-                      <Link 
-                        href="/admin" 
-                        className="block px-4 py-2 text-sm text-beleza-700 hover:bg-beleza-50 hover:text-beleza-900 transition"
-                        onClick={() => setMenuOpen(false)}
-                      >
-                        ⚙️ Adicionar Trança
-                      </Link>
-                    )}
-                    {user && user.role === 'ADMIN' && (
-                        <Link href="/dashboard" className="block px-4 py-2 text-sm text-beleza-700 hover:bg-beleza-50 hover:text-beleza-900 transition">
-                            📊 Painel Admin
-                        </Link>
-                    )}
-                    */}
-
                     <div className="h-px bg-beleza-100 my-1"></div>
 
                     {/* Item 3: Sair */}
